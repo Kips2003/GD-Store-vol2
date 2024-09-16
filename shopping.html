@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/shopping.css">
+        <link rel="stylesheet" href="css/logo.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+        <title>GD Store</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="wraper">
+                <div class="logo">
+                    <a href="index.html">
+                        <div class="logo-div">
+                            <span class="icon-logo"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span></span>    
+                        </div>
+                    </a>
+                </div>
+                <div class="search">
+                    <input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   S e a r c h"/>
+                </div>
+                <div class="sign-log">
+                    <div class="log-in">
+                        <p>Log In</p>
+                    </div>
+                    <div class="sign-in">
+                        <p>Sign Up</p>
+                    </div>
+                </div>
+            </div>
+        </header>   
+        <main>
+            <section class="filters">
+                <div class="wraper-filter">
+                    <div class="category">
+                        <select name="category" id="">
+                            <option value="category">Categories</option>
+                            <option value="livingRoom">Living Room</option>
+                            <option value="bedRoom">Bed Room</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="guestRoom">Guest Room</option>
+                            <option value="decoration">Decoration</option>
+                        </select>
+                    </div>
+                    <div class="price">
+                       <p>Price</p>
+                       <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script>
+            const priceToggle = document.querySelector('.price');
+            const categoryToggle = document.querySelector('.category');
+            const filters = document.querySelector('.filters');
+
+            categoryToggle.style.cursor = 'pointer';
+            priceToggle.style.cursor = 'pointer';
+
+            const div = document.createElement('div');
+
+
+            div.innerHTML = 
+            `<label for="min">min:</label>
+            <input type="text" name="min" id="min">
+            <label for="max">max:</label>
+            <input type="text" name="max" id="max">`;
+            div.classList.add = "price-toggle";
+
+            priceToggle.addEventListener('click', () => {
+                
+                filters.innerHTML += `<div class="price-toggle">
+                <label for="min">min:</label>
+                <input type="text" name="min" id="min">
+                <label for="max">max:</label>
+                <input type="text" name="max" id="max">
+                <button type="submit">Submit</button>
+            </div>`;
+            })
+        </script>
+    </body>
+</html>
+
+<!-- 
+<div class="price-toggle">
+    <label for="min">min:</label>
+    <input type="text" name="min" id="min">
+    <label for="max">max:</label>
+    <input type="text" name="max" id="max">
+</div> -->

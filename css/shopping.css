@@ -1,0 +1,122 @@
+/* Price Filter Section */
+.filters {
+    display: flex;
+    justify-content: center;
+    background-color: #2c1b13;
+    padding: 20px 0;
+}
+
+.wraper-filter {
+    max-width: 1440px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Category Dropdown */
+select {
+    height: 50px;
+    background-color: #2c1b13;
+    color: #f9e3d0;
+    font-family: 'be Vietnam Pro';
+    padding: 0 20px;
+    border: 2px solid #f9e3d0;
+    border-radius: 10px;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+select:hover {
+    background-color: #1e0f0a;
+    border-color: #ff9141;
+}
+
+/* Price Filter Button */
+.price {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #2c1b13;
+    padding: 0 20px;
+    border-radius: 10px;
+    border: 2px solid #f9e3d0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.price:hover {
+    background-color: #1e0f0a;
+    border-color: #ff9141;
+}
+
+.price p {
+    color: #f9e3d0;
+    font-family: 'be Vietnam Pro';
+    margin-right: 10px;
+}
+
+.price i {
+    color: #f9e3d0;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.price.active i {
+    transform: rotate(180deg); /* Rotate arrow on click */
+}
+
+/* Price Toggle Dropdown */
+.price-toggle {
+    display: none;
+    flex-direction: column;
+    background-color: #2c1b13;
+    padding: 20px;
+    position: absolute;
+    top: 60px; /* Adjust positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    border: 2px solid #f9e3d0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.price-toggle.show {
+    display: flex;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Slide into view */
+}
+
+.price-toggle label {
+    color: #f9e3d0;
+    font-family: "be Vietnam Pro", sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.price-toggle input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #f9e3d0;
+    background-color: #fff8f2;
+    font-family: "be Vietnam Pro", sans-serif;
+    margin-bottom: 10px;
+}
+
+.price-toggle button {
+    background-color: #f9e3d0;
+    color: #2c1b13;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: "be Vietnam Pro", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.price-toggle button:hover {
+    background-color: #e8d1b8;
+}

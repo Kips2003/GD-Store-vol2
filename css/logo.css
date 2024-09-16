@@ -1,0 +1,260 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/fonts/icomoon.eot?nq40qi');
+    src:  url('../fonts/fonts/icomoon.eot?nq40qi#iefix') format('embedded-opentype'),
+      url('../fonts/fonts/icomoon.ttf?nq40qi') format('truetype'),
+      url('../fonts/fonts/icomoon.woff?nq40qi') format('woff'),
+      url('../fonts/fonts/icomoon.svg?nq40qi#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change ../fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-logo .path1:before {
+    content: "\e900";
+    color: #fff8f2;
+    border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path2:before {
+    content: "\e901";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path3:before {
+    content: "\e902";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path4:before {
+    content: "\e903";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path5:before {
+    content: "\e904";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path6:before {
+    content: "\e905";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path7:before {
+    content: "\e906";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path8:before {
+    content: "\e907";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path9:before {
+    content: "\e908";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path10:before {
+    content: "\e909";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path11:before {
+    content: "\e90a";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path12:before {
+    content: "\e90b";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path13:before {
+    content: "\e90c";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path14:before {
+    content: "\e90d";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path15:before {
+    content: "\e90e";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #2c1b13;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path16:before {
+    content: "\e90f";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path17:before {
+    content: "\e910";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .icon-logo .path18:before {
+    content: "\e911";
+    border-radius: 10px;
+
+    margin-left: -1em;
+    color: #fff8f2;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+/* 
+  .icon-logo:hover .path1:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path2:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path3:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path4:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path5:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path6:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path7:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path8:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path9:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path10:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path11:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path12:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path13:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path14:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path15:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path16:before {
+    color: #fff8f2;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path17:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  }
+  .icon-logo:hover .path18:before {
+    color: #2c1b13;
+    box-shadow: 0px 0px 20px white;
+  } */

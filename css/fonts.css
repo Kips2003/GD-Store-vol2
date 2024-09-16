@@ -1,0 +1,555 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-LightItalic.eot');
+    src: url('../fonts/Rubik-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-LightItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-LightItalic.woff') format('woff'),
+        url('../fonts/Rubik-LightItalic.svg#../fonts/Rubik-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Light.eot');
+    src: url('../fonts/Rubik-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Light.woff2') format('woff2'),
+        url('../fonts/Rubik-Light.woff') format('woff'),
+        url('../fonts/Rubik-Light.svg#../fonts/Rubik-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-ExtraBold.eot');
+    src: url('../fonts/Rubik-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Rubik-ExtraBold.woff') format('woff'),
+        url('../fonts/Rubik-ExtraBold.svg#../fonts/Rubik-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-MediumItalic.eot');
+    src: url('../fonts/Rubik-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-MediumItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-MediumItalic.woff') format('woff'),
+        url('../fonts/Rubik-MediumItalic.svg#../fonts/Rubik-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Medium.eot');
+    src: url('../fonts/Rubik-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Medium.woff2') format('woff2'),
+        url('../fonts/Rubik-Medium.woff') format('woff'),
+        url('../fonts/Rubik-Medium.svg#../fonts/Rubik-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-SemiBold.eot');
+    src: url('../fonts/Rubik-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-SemiBold.woff2') format('woff2'),
+        url('../fonts/Rubik-SemiBold.woff') format('woff'),
+        url('../fonts/Rubik-SemiBold.svg#../fonts/Rubik-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Bold.eot');
+    src: url('../fonts/Rubik-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Bold.woff2') format('woff2'),
+        url('../fonts/Rubik-Bold.woff') format('woff'),
+        url('../fonts/Rubik-Bold.svg#../fonts/Rubik-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-SemiBoldItalic.eot');
+    src: url('../fonts/Rubik-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-SemiBoldItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-SemiBoldItalic.woff') format('woff'),
+        url('../fonts/Rubik-SemiBoldItalic.svg#../fonts/Rubik-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-LightItalic.eot');
+    src: url('../fonts/Rubik-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-LightItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-LightItalic.woff') format('woff'),
+        url('../fonts/Rubik-LightItalic.svg#../fonts/Rubik-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-BlackItalic.eot');
+    src: url('../fonts/Rubik-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-BlackItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-BlackItalic.woff') format('woff'),
+        url('../fonts/Rubik-BlackItalic.svg#../fonts/Rubik-BlackItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Italic.eot');
+    src: url('../fonts/Rubik-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Italic.woff2') format('woff2'),
+        url('../fonts/Rubik-Italic.woff') format('woff'),
+        url('../fonts/Rubik-Italic.svg#../fonts/Rubik-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Black.eot');
+    src: url('../fonts/Rubik-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Black.woff2') format('woff2'),
+        url('../fonts/Rubik-Black.woff') format('woff'),
+        url('../fonts/Rubik-Black.svg#../fonts/Rubik-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-ExtraBoldItalic.eot');
+    src: url('../fonts/Rubik-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-ExtraBoldItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-ExtraBoldItalic.woff') format('woff'),
+        url('../fonts/Rubik-ExtraBoldItalic.svg#../fonts/Rubik-ExtraBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-BoldItalic.eot');
+    src: url('../fonts/Rubik-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-BoldItalic.woff2') format('woff2'),
+        url('../fonts/Rubik-BoldItalic.woff') format('woff'),
+        url('../fonts/Rubik-BoldItalic.svg#../fonts/Rubik-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Light.eot');
+    src: url('../fonts/Rubik-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Light.woff2') format('woff2'),
+        url('../fonts/Rubik-Light.woff') format('woff'),
+        url('../fonts/Rubik-Light.svg#../fonts/Rubik-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Regular.eot');
+    src: url('../fonts/Rubik-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Rubik-Regular.woff2') format('woff2'),
+        url('../fonts/Rubik-Regular.woff') format('woff'),
+        url('../fonts/Rubik-Regular.svg#../fonts/Rubik-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* Inter font */
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.eot');
+    src: url('../fonts/Inter-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Regular.woff2') format('woff2'),
+        url('../fonts/Inter-Regular.woff') format('woff'),
+        url('../fonts/Inter-Regular.svg#../fonts/Inter-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Black.eot');
+    src: url('../fonts/Inter-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Black.woff2') format('woff2'),
+        url('../fonts/Inter-Black.woff') format('woff'),
+        url('../fonts/Inter-Black.svg#../fonts/Inter-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-ExtraBold.eot');
+    src: url('../fonts/Inter-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Inter-ExtraBold.woff') format('woff'),
+        url('../fonts/Inter-ExtraBold.svg#../fonts/Inter-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Bold.eot');
+    src: url('../fonts/Inter-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Bold.woff2') format('woff2'),
+        url('../fonts/Inter-Bold.woff') format('woff'),
+        url('../fonts/Inter-Bold.svg#../fonts/Inter-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Light.eot');
+    src: url('../fonts/Inter-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Light.woff2') format('woff2'),
+        url('../fonts/Inter-Light.woff') format('woff'),
+        url('../fonts/Inter-Light.svg#../fonts/Inter-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.eot');
+    src: url('../fonts/Inter-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Regular.woff2') format('woff2'),
+        url('../fonts/Inter-Regular.woff') format('woff'),
+        url('../fonts/Inter-Regular.svg#../fonts/Inter-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-ExtraLight.eot');
+    src: url('../fonts/Inter-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-ExtraLight.woff2') format('woff2'),
+        url('../fonts/Inter-ExtraLight.woff') format('woff'),
+        url('../fonts/Inter-ExtraLight.svg#../fonts/Inter-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-SemiBold.eot');
+    src: url('../fonts/Inter-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-SemiBold.woff2') format('woff2'),
+        url('../fonts/Inter-SemiBold.woff') format('woff'),
+        url('../fonts/Inter-SemiBold.svg#../fonts/Inter-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Medium.eot');
+    src: url('../fonts/Inter-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Medium.woff2') format('woff2'),
+        url('../fonts/Inter-Medium.woff') format('woff'),
+        url('../fonts/Inter-Medium.svg#../fonts/Inter-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Thin.eot');
+    src: url('../fonts/Inter-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Inter-Thin.woff2') format('woff2'),
+        url('../fonts/Inter-Thin.woff') format('woff'),
+        url('../fonts/Inter-Thin.svg#../fonts/Inter-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* Be Vietnam Pro */
+
+
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-BlackItalic.eot');
+    src: url('../fonts/BeVietnamPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-BlackItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-BlackItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-BlackItalic.svg#../fonts/BeVietnamPro-BlackItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-BoldItalic.eot');
+    src: url('../fonts/BeVietnamPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-BoldItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-BoldItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-BoldItalic.svg#../fonts/BeVietnamPro-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-SemiBoldItalic.eot');
+    src: url('../fonts/BeVietnamPro-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-SemiBoldItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-SemiBoldItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-SemiBoldItalic.svg#../fonts/BeVietnamPro-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Bold.eot');
+    src: url('../fonts/BeVietnamPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Bold.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Bold.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Bold.svg#../fonts/BeVietnamPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Black.eot');
+    src: url('../fonts/BeVietnamPro-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Black.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Black.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Black.svg#../fonts/BeVietnamPro-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-ThinItalic.eot');
+    src: url('../fonts/BeVietnamPro-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-ThinItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-ThinItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-ThinItalic.svg#../fonts/BeVietnamPro-ThinItalic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-ExtraLightItalic.eot');
+    src: url('../fonts/BeVietnamPro-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-ExtraLightItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-ExtraLightItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-ExtraLightItalic.svg#../fonts/BeVietnamPro-ExtraLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-LightItalic.eot');
+    src: url('../fonts/BeVietnamPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-LightItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-LightItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-LightItalic.svg#../fonts/BeVietnamPro-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-ExtraLight.eot');
+    src: url('../fonts/BeVietnamPro-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-ExtraLight.woff') format('woff'),
+        url('../fonts/BeVietnamPro-ExtraLight.svg#../fonts/BeVietnamPro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Regular.eot');
+    src: url('../fonts/BeVietnamPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Regular.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Regular.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Regular.svg#../fonts/BeVietnamPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-SemiBold.eot');
+    src: url('../fonts/BeVietnamPro-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-SemiBold.woff') format('woff'),
+        url('../fonts/BeVietnamPro-SemiBold.svg#../fonts/BeVietnamPro-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Light.eot');
+    src: url('../fonts/BeVietnamPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Light.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Light.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Light.svg#../fonts/BeVietnamPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Italic.eot');
+    src: url('../fonts/BeVietnamPro-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Italic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Italic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Italic.svg#../fonts/BeVietnamPro-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-MediumItalic.eot');
+    src: url('../fonts/BeVietnamPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-MediumItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-MediumItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-MediumItalic.svg#../fonts/BeVietnamPro-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-ExtraBoldItalic.eot');
+    src: url('../fonts/BeVietnamPro-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-ExtraBoldItalic.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-ExtraBoldItalic.woff') format('woff'),
+        url('../fonts/BeVietnamPro-ExtraBoldItalic.svg#../fonts/BeVietnamPro-ExtraBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Medium.eot');
+    src: url('../fonts/BeVietnamPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Medium.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Medium.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Medium.svg#../fonts/BeVietnamPro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-Thin.eot');
+    src: url('../fonts/BeVietnamPro-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-Thin.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-Thin.woff') format('woff'),
+        url('../fonts/BeVietnamPro-Thin.svg#../fonts/BeVietnamPro-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('../fonts/BeVietnamPro-ExtraBold.eot');
+    src: url('../fonts/BeVietnamPro-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BeVietnamPro-ExtraBold.woff2') format('woff2'),
+        url('../fonts/BeVietnamPro-ExtraBold.woff') format('woff'),
+        url('../fonts/BeVietnamPro-ExtraBold.svg#../fonts/BeVietnamPro-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* georgian font */
+
+
+@font-face {
+    font-family: 'BPG ExtraSquare Mtavruli';
+    src: url('../fonts/BPGExtraSquareMtavruli.eot');
+    src: url('../fonts/BPGExtraSquareMtavruli.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BPGExtraSquareMtavruli.woff2') format('woff2'),
+        url('../fonts/BPGExtraSquareMtavruli.woff') format('woff'),
+        url('../fonts/BPGExtraSquareMtavruli.svg#../fonts/BPGExtraSquareMtavruli') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
