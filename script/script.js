@@ -113,7 +113,7 @@
 // Select necessary elements
 const search = document.querySelector('.search');
 const secTwo = document.querySelector('.sec-two-wraper');
-const secThree = document.querySelector('.sec-three');
+const secThree = document.querySelector('.sec-three-wraper');
 
 // Function to check the width and update the display property for search
 function updateSearchDisplay() {
@@ -131,7 +131,7 @@ function updateSearchDisplay() {
             let searchSection = document.querySelector('.search-main');
             if (searchSection) {
                 // If search section exists, toggle its visibility
-                if (searchSection.style.display === 'none' || searchSection.style.display === '') {
+                if (searchSection.style.display === 'none' /*|| searchSection.style.display === ''*/) {
                     searchSection.style.display = 'block'; // Make sure it's visible
                 } else {
                     searchSection.style.display = 'none'; // Hide it again on subsequent clicks
@@ -146,7 +146,7 @@ function updateSearchDisplay() {
                 searchMain.style.padding = '10px'; // Add some padding to make it noticeable
                 searchMain.style.backgroundColor = '#fff8f2'; // Ensure background is visible
                 searchMain.style.position = 'fixed'; // So it shows in flow of the page
-                searchMain.style.zIndex = '10'; // Keep it above other content
+                searchMain.style.zIndex = '12'; // Keep it above other content
 
                 // Insert the searchMain element as the first child of the main element
                 document.querySelector('main').insertBefore(searchMain, document.querySelector('main').firstChild);
@@ -158,6 +158,7 @@ function updateSearchDisplay() {
         search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   S e a r c h"/>`;
         search.style.order = '2';
         const searchSection = document.querySelector('.search-main');
+        searchSection.style.display = "none";
         if (searchSection) {
             searchSection.style.display = 'none'; // Hide the extra search section on larger screens
         }
@@ -190,7 +191,21 @@ let observer = new IntersectionObserver((entries) => {
 }, options);
 
 observer.observe(secTwo);
-observer.observe(secThree); // Observe secThree for animation as well
+
+
+alreadyAnimated = false;
+
+let observerThree = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !alreadyAnimated) {
+            secThree.classList.add('animate'); // Trigger animation class for secTwo
+            alreadyAnimated = true; // Prevent the animation from triggering multiple times
+            observer.unobserve(secThree); // Stop observing secTwo after it animates
+        }
+    });
+}, options);
+
+observerThree.observe(secThree); // Observe secThree for animation as well
 
 // Set the cursor style for the login and register buttons
 const loginButton = document.querySelector('.log-in');
