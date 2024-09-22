@@ -112,8 +112,6 @@
 
 // Select necessary elements
 const search = document.querySelector('.search');
-const secTwo = document.querySelector('.sec-two-wraper');
-const secThree = document.querySelector('.sec-three-wraper');
 
 // Function to check the width and update the display property for search
 function updateSearchDisplay() {
@@ -157,8 +155,8 @@ function updateSearchDisplay() {
         document.querySelector('.wraper').appendChild(search);
         search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   S e a r c h"/>`;
         search.style.order = '2';
-        const searchSection = document.querySelector('.search-main');
-        searchSection.style.display = "none";
+        let searchSection = document.querySelector('.search-main');
+        //searchSection.style.display = "none";
         if (searchSection) {
             searchSection.style.display = 'none'; // Hide the extra search section on larger screens
         }
@@ -172,7 +170,11 @@ updateSearchDisplay();
 window.addEventListener('resize', updateSearchDisplay);
 
 // IntersectionObserver to animate secTwo when it becomes visible on scroll
-let alreadyAnimated = false;
+const secTwo = document.querySelector('.sec-two-wraper');
+const secThree = document.querySelector('.sec-three-wraper');
+
+let secTwoAnimated = false; // Separate flag for secTwo
+let secThreeAnimated = false; // Separate flag for secThree
 
 const options = {
     root: null,
@@ -180,32 +182,32 @@ const options = {
     threshold: 0.05,
 };
 
-let observer = new IntersectionObserver((entries) => {
+// Observer for secTwo
+let observerSecTwo = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting && !alreadyAnimated) {
+        if (entry.isIntersecting && !secTwoAnimated) {
             secTwo.classList.add('animate'); // Trigger animation class for secTwo
-            alreadyAnimated = true; // Prevent the animation from triggering multiple times
-            observer.unobserve(secTwo); // Stop observing secTwo after it animates
+            secTwoAnimated = true; // Prevent the animation from triggering multiple times
+            observerSecTwo.unobserve(secTwo); // Stop observing secTwo after it animates
         }
     });
 }, options);
 
-observer.observe(secTwo);
+observerSecTwo.observe(secTwo); // Observe secTwo
 
-
-alreadyAnimated = false;
-
-let observerThree = new IntersectionObserver((entries) => {
+// Observer for secThree
+let observerSecThree = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting && !alreadyAnimated) {
-            secThree.classList.add('animate'); // Trigger animation class for secTwo
-            alreadyAnimated = true; // Prevent the animation from triggering multiple times
-            observer.unobserve(secThree); // Stop observing secTwo after it animates
+        if (entry.isIntersecting && !secThreeAnimated) {
+            secThree.classList.add('animate'); // Trigger animation class for secThree
+            secThreeAnimated = true; // Prevent the animation from triggering multiple times
+            observerSecThree.unobserve(secThree); // Stop observing secThree after it animates
         }
     });
 }, options);
 
-observerThree.observe(secThree); // Observe secThree for animation as well
+observerSecThree.observe(secThree); // Observe secThree
+
 
 // Set the cursor style for the login and register buttons
 const loginButton = document.querySelector('.log-in');

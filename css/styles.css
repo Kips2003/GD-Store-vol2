@@ -465,14 +465,14 @@ select{
     width: 100%;
     height: 100%;
 }
-.map.animate{
+.sec-three-wraper.animate .map{
     transform: translateX(0); /* Slide in */
     opacity: 1;
     transition: transform 1s ease-out, opacity 1s ease-out;
     transition-delay: 0s;
 }
 
-.contact-info.animate {
+.sec-three-wraper.animate .contact-info{
     transform: translateX(0); /* Slide in */
     opacity: 1;
     transition: transform 1s ease-out, opacity 1s ease-out;
