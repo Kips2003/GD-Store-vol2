@@ -8,12 +8,17 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    
+    align-items: center;
     position: fixed;
     width: 100%;
+    padding: 5px 0;
     background-color: #fff8f2;
     /* margin-top: -120px; */
     z-index: 1000;
 }
+
+
 
 /* wraper */
 .wraper {
@@ -36,7 +41,7 @@
 /* icon logo font  */
     
     .icon-logo {
-        font-size: 120px;
+        font-size: 100px;
         
     }
     .logo-div{
@@ -138,7 +143,8 @@ img{
     color: #f9e3d0;
     font-size: 40px;
     letter-spacing: 5px;
-    font-family: 'Inter';
+    text-align: center;
+    font-family:"Satisfy", cursive;
 }
 .shop-now{
     width: 200px;
@@ -213,7 +219,7 @@ img{
     transform: translateX(0); /* Slide in */
     opacity: 1;
     transition: transform 1s ease-out, opacity 1s ease-out;
-    transition-delay: 0.2s;
+    transition-delay: 0s;
 
 }
 
@@ -222,7 +228,7 @@ img{
     transform: translateX(0); /* Slide in */
     opacity: 1;
     transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
-    transition-delay: 1s;
+    transition-delay: 0.5s;
 
 }
 .sec-two-title{
@@ -244,7 +250,7 @@ img{
     transform: translateX(0); /* Slide in */
     opacity: 1;
     transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
-    transition-delay: 1s;
+    transition-delay: 0.5s;
 }
 
 .filters{
@@ -322,3 +328,685 @@ select{
     /* padding: 20px 0; */
 }
 
+
+/* section three */
+/* this section is for contact */
+/* it will provide contact info email and map location */
+
+.sec-three{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 100px 0;
+}
+.sec-three-wraper{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 1440px;
+    width: 90%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* contact info */
+
+.contact-info{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    
+}
+.contact-info h2{
+    font-family: 'Inter';
+    font-size: 60px;
+    font-weight: 800;
+    color: #191A19;
+    text-decoration: underline;
+    -webkit-text-decoration-color: rgb(255, 145, 0);
+            text-decoration-color: rgb(255, 145, 0);
+    text-underline-offset: 40px;
+    margin-bottom: 70px;
+}
+
+/* info class */
+.info{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    row-gap: 20px;
+}
+.info i{
+    font-size: 35px;
+}
+.info span{
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    color: #191A19;
+
+}
+.info a{
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    color: #191A19; 
+}
+.phone,
+.email,
+.location{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-column-gap: 20px;
+       -moz-column-gap: 20px;
+            column-gap: 20px;
+}
+
+/* map class */
+.map{
+    width: 40%;
+    height: 30vw;
+}
+.map iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.contact-info.animate {
+    transform: translateX(0); /* Slide in */
+    opacity: 1;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+    transition-delay: 0s;
+
+}
+
+/* footer section */
+/* this section is for footer */
+/* it will have social media navigation */  
+
+.footer{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: #fff8f2;
+    padding: 64px 0;
+}
+.footer-wraper{
+    max-width: 1440px;
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* left-side controll */
+.left-side{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    row-gap: 20px;
+}
+
+/* social media contro */
+.social-media{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-column-gap: 15px;
+       -moz-column-gap: 15px;
+            column-gap: 15px;
+}
+.social-media i{
+    font-size: 30px;
+    color: #2c1b13;
+}
+
+/* footer naviation controll */
+.navigation-wraper{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 20px;
+}
+.navigation-wraper h2{
+    font-family: 'Rubik';
+    font-size: 25px;
+    font-weight: 600;
+    color: #2c1b13;
+    text-align: center;
+}
+.navigation-wraper a{
+    font-family: 'Rubik';
+    font-size: 20px;
+    font-weight: 400;
+    color: #2c1b13;
+    text-align: center;
+}
+.footer-navigation ul{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 10px;
+    text-align: center;
+}
+
+/* copyright control */
+.copyright{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+}
+.copyright i{
+    font-size: 20px;
+    color: #2c1b13;
+}
+.copyright p{
+    font-size: 20px;
+    color: #2c1b13;
+    font-family: 'Inter';
+    font-weight: 300;
+}
+
+
+
+
+
+
+
+
+/* adding responsive to the code */
+
+/* media sectiona */
+/* this section of the css code is for adjusting for differante devices */
+/* i am gona use max-width */
+/* for now i am gonna start from 10240px for tablet devices*/
+/* in this case there is minimal adjustments */
+/* for now we just need photo adjustement in section two */
+
+@media (max-width: 1024px){
+    .sec-two-photo{
+        height: 100%;
+        width: 45%;
+        background-position: -3cm;
+    }
+    .sec-two-title{
+        width: 50%;
+    }
+    .info{
+        row-gap: 50px;
+    }
+
+    /* to look better i am changing headers navigation buttons padding */
+    /* with this we can go down to 930px width */
+    .navigation a{
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* next media */
+/* next media will be 870px */
+/* because the titles of the sections are getting wierd i will lower there fotn size */
+@media (max-width: 870px){
+    /* changing section two title */
+    .sec-two-title h2{
+        font-size: 50px;
+    }
+    .sec-two-title p{
+        font-size: 16px;
+        line-height: 25px;
+    }
+    /* changing section four title */
+    .sec-four-title h2{
+        font-size: 50px;
+    }
+    /* changing section three title */
+    /* also i will drop down the number mail and address */
+    .sec-three-wraper h2{
+        font-size: 50px;
+        text-underline-offset: 50px;
+    }
+    .phone,
+    .email,
+    .location{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: start;
+        row-gap: 15px;
+    }
+}
+
+
+
+
+
+
+
+/* next media */
+/* this section is for media under 830px  */
+/* because of shopping part of the website is getting wierd */
+/* this is because of names thats why under 830px it will be all vertical */
+@media (max-width: 830px){
+    /* go to column section two */
+    .sec-two-wraper{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        row-gap: 70px;
+    }
+    .sec-two-wraper p{
+        font-family: 'Inter';
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+        margin-top: 100px;
+        line-height: 35px;
+        width: 80%;
+        transform: translateX(-800px); /* Start off-screen */
+    
+    }
+    
+    .sec-two-wraper.animate h2 {
+        transform: translateX(0); /* Slide in */
+        opacity: 1;
+        transition: transform 1s ease-out, opacity 1s ease-out;
+        transition-delay: 0s;
+    
+    }
+    
+    /* Animate the paragraph second */
+    .sec-two-wraper.animate p {
+        transform: translateX(0); /* Slide in */
+        opacity: 1;
+        transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
+        transition-delay: 0s;
+    
+    }
+    .sec-two-photo{
+        background-image: url(../images/1_HWTn9_OU8yJbA__QrNfKYQ.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+        width: 45%;
+        height: 100%;
+        border-radius: 20px;
+        transform: translate(700px);
+    }
+    
+    .sec-two-wraper.animate .sec-two-photo{
+        transform: translateX(0); /* Slide in */
+        opacity: 1;
+        transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
+        transition-delay: 0.5s;
+    }
+    
+    .sec-two-title{
+        width: 100%;
+    }
+    .sec-two-title h2{
+        width: 100%;
+        text-align: center;
+    }
+    .sec-two-title p{
+        width: 100%;
+        text-align: center;
+    }
+    .sec-two-photo{
+        width: 100%;
+        height: 600px;
+    }
+
+    /* section-four changes */
+    .sec-four-title{
+        text-align: center;
+    }
+    .first-row{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        row-gap: 40px;
+    }
+    .second-row{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        row-gap: 40px;
+    }
+    .shop{
+        height: 700px;
+    }
+    .photo1,
+    .photo2,
+    .photo3,
+    .photo4{
+        height: 100%;
+    }
+
+    /* section three changes */
+    .sec-three-wraper{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-column-gap: 50px;
+           -moz-column-gap: 50px;
+                column-gap: 50px;
+        row-gap: 50px;
+    }
+    .contact-info h2{
+        margin-bottom: 110px;
+        width: 100%;
+        text-align: center;
+    }
+    .icon{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+    .info a{
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+    .map{
+        width: 100%;
+        height: 90vw;
+        order: 2;
+    }
+    .icon-logo{
+        font-size: 80px;
+    }
+}
+
+/* next media */
+/* this media is for under 720px */
+/* in this section i am adding burgerbar to the header */
+/* by that i will prevent overflow of the header */
+@media (max-width: 720px){
+    .navigation {
+        display: none;
+    }
+
+    .burgerbar {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        cursor: pointer;
+    }
+
+    .header-right .navigation.active {
+        display: block;
+        position: absolute;
+        background: #fff;
+        top: 70%;
+        right: 24%;
+        width: 50%;
+        -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 30px 20px 20px;
+        border-radius: 25px;
+    }
+
+    .header-right .navigation ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .header-right .navigation ul li {
+        margin: 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .header-right .navigation ul li a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .header-right .navigation ul li a:hover {
+        background: #f4f4f4;
+    }
+
+    .header-right{
+        -webkit-column-gap: 10px;
+           -moz-column-gap: 10px;
+                column-gap: 10px;
+    }
+    /* also changing footer */
+    .footer-wraper{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        row-gap: 80px;
+    }
+}
+
+
+/* next media */
+/* next media is 600px */
+/* looks like section four components are realy ugly for now so i will change it */
+@media (max-width: 600px){
+    .shop{
+        height: 100vw;
+    }
+    .sec-two-photo{
+        background-position: center;
+    }
+    .info a{
+        font-size: 20px;
+    }
+    .info span{
+        font-size: 20px;
+    }
+    .info i{
+        font-size: 25px;
+        margin-right: 10px;
+    }
+    .footer{
+        padding: 20px 0;
+    }
+}
+
+
+/* last part of media */
+/* in this i will change section one title which is too big */
+@media (max-width: 500px){
+    .sec-one-title h2{
+        text-align: center;
+        font-size: 50px;
+    }
+    .sec-one-title h3{
+        text-align: center;
+        font-size: 50px;
+    }
+    .sec-one-buttons{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        row-gap: 20px;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+
+    }
+    .button1,
+    .button2{
+        width: 80%;
+    }
+    .button1{
+        margin-right: 0;
+    }
+
+    .sec-two-photo{
+        height: 90vw;
+    }
+    .sec-two-wraper p{
+        font-size: 16px;
+    }
+    .sec-two-wraper h2{
+        font-size: 35px;
+    }
+}
+
+
+
+
+/* 
+.body{
+    width: 100%;
+    height: 100%;
+    background-color: #ff9100;
+    display: flex;
+    justify-content: center;
+}
+.sections{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff9100;
+}
+.sections h1{
+    width: 100%;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 700;
+    font-family: 'Be Vietnam Pro';
+}
+.sections h2{
+    width: 50%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    font-family: 'Be Vietnam Pro';
+}
+
+.wait-confirmation{
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.confirm{
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 1440px;
+    width: 90%;
+    height: 600px;
+    position: relative;
+    z-index: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 20px;
+}
+.confirm h1{
+    font-size: 50px;
+    font-family: "Be Vietnam Pro";
+    font-weight: 700;
+} */
