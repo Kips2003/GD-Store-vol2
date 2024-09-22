@@ -39,7 +39,9 @@
 
 
 /* icon logo font  */
-    
+    .logo{
+        order: 1;
+    }
     .icon-logo {
         font-size: 100px;
         
@@ -47,6 +49,7 @@
     .logo-div{
         z-index: 1000;
     }
+    
     
 
     input.empty {
@@ -65,6 +68,7 @@
     .sign-log{
         display: flex;
         column-gap: 10px;
+        order: 3;
     }
     .sign-log p{
         font-size: 16px;
@@ -79,6 +83,7 @@
         padding: 0 25px;
         border-radius: 20px;
         background-color: #2c1b13;
+        order: 2;
     }
     
     .sign-in{
@@ -89,11 +94,30 @@
         padding: 0 25px;
         background-color: #f9e3d0;
         border-radius: 20px;
+        order: 3;
     }
+
     .sign-in p{
         color: black;
     }
 
+    .fa-magnifying-glass{
+        font-size: 20px;
+        margin-right: 5px;
+        color: #2c1b13;
+    }
+
+    .search-main{
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+        padding: 20px 20px 0 20px;        
+        transform: translateY(0px);
+    }
+    .search-main > input {
+        width: 100%;
+
+    }
 
 
     /* 
@@ -555,6 +579,10 @@ select{
 }
 
 
+.sign-log{
+    display: flex;
+    align-items: center;
+}
 
 
 
@@ -641,6 +669,9 @@ select{
 /* because of shopping part of the website is getting wierd */
 /* this is because of names thats why under 830px it will be all vertical */
 @media (max-width: 830px){
+    main{
+        padding-top: 90px;
+    }
     /* go to column section two */
     .sec-two-wraper{
         -webkit-box-orient: vertical;
@@ -862,7 +893,7 @@ select{
         -webkit-box-direction: normal;
             -ms-flex-direction: column;
                 flex-direction: column;
-        row-gap: 80px;
+        row-gap: 30px;
     }
 }
 
@@ -871,24 +902,25 @@ select{
 /* next media is 600px */
 /* looks like section four components are realy ugly for now so i will change it */
 @media (max-width: 600px){
-    .shop{
-        height: 100vw;
-    }
+
     .sec-two-photo{
         background-position: center;
     }
     .info a{
-        font-size: 20px;
+        font-size: 16px;
     }
     .info span{
-        font-size: 20px;
+        font-size: 16px;
     }
     .info i{
-        font-size: 25px;
+        font-size: 20px;
         margin-right: 10px;
     }
     .footer{
         padding: 20px 0;
+    }
+    .navigation-wraper a{
+        font-size: 16px;
     }
 }
 
@@ -934,6 +966,12 @@ select{
     }
     .sec-two-wraper h2{
         font-size: 35px;
+    }
+}
+
+@media (max-width: 400px){
+    .sign-in{
+        display: none;
     }
 }
 
