@@ -241,6 +241,13 @@ img{
     transform: translateX(-600px); /* Start off-screen */
 
 }
+.sec-two-wraper.animate p {
+    transform: translateX(0); /* Slide in */
+    opacity: 1;
+    transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
+    transition-delay: 0.5s;
+
+}
 
 .sec-two-wraper.animate h2 {
     transform: translateX(0); /* Slide in */
@@ -251,13 +258,7 @@ img{
 }
 
 /* Animate the paragraph second */
-.sec-two-wraper.animate p {
-    transform: translateX(0); /* Slide in */
-    opacity: 1;
-    transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth animation */
-    transition-delay: 0.5s;
 
-}
 .sec-two-title{
     width: 50%;
 }
