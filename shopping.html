@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/logo.css">
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/shopping.css">
+        <link rel="stylesheet" href="css/shop.css">
+        <!-- <link rel="stylesheet" href="css/shopping.css"> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
         <title>GD Store</title>
@@ -40,9 +40,9 @@
                     </div>
                 </div>
             </div>
-        </header>   
+        </header>    
         <main>
-            <section class="filters">
+            <!-- <section class="filters">
                 <div class="wraper-filter">
                     <div class="category">
                         <select name="category" id="">
@@ -59,40 +59,43 @@
                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
-            <section>
-                <img class="test-image" src="ProductImages/daniele-buso-73AF6JIEBl8-unsplash 1.jpg" alt="image">
+            <section class="sec-one">
+                <div class="slider">
+                    <div id="products" class="photos">
+                    </div>
+                </div>
             </section>
         </main>
-        <script>
-            const priceToggle = document.querySelector('.price');
-            const categoryToggle = document.querySelector('.category');
-            const filters = document.querySelector('.filters');
+        <script src="script/shopping.js">
+            // const priceToggle = document.querySelector('.price');
+            // const categoryToggle = document.querySelector('.category');
+            // const filters = document.querySelector('.filters');
 
-            categoryToggle.style.cursor = 'pointer';
-            priceToggle.style.cursor = 'pointer';
+            // categoryToggle.style.cursor = 'pointer';
+            // priceToggle.style.cursor = 'pointer';
 
-            const div = document.createElement('div');
+            // const div = document.createElement('div');
 
 
-            div.innerHTML = 
-            `<label for="min">min:</label>
-            <input type="text" name="min" id="min">
-            <label for="max">max:</label>
-            <input type="text" name="max" id="max">`;
-            div.classList.add = "price-toggle";
+            // div.innerHTML = 
+            // `<label for="min">min:</label>
+            // <input type="text" name="min" id="min">
+            // <label for="max">max:</label>
+            // <input type="text" name="max" id="max">`;
+            // div.classList.add = "price-toggle";
 
-            priceToggle.addEventListener('click', () => {
+            // priceToggle.addEventListener('click', () => {
                 
-                filters.innerHTML += `<div class="price-toggle">
-                <label for="min">min:</label>
-                <input type="text" name="min" id="min">
-                <label for="max">max:</label>
-                <input type="text" name="max" id="max">
-                <button type="submit">Submit</button>
-            </div>`;
-            })
+            //     filters.innerHTML += `<div class="price-toggle">
+            //     <label for="min">min:</label>
+            //     <input type="text" name="min" id="min">
+            //     <label for="max">max:</label>
+            //     <input type="text" name="max" id="max">
+            //     <button type="submit">Submit</button>
+            // </div>`;
+            // })
         </script>
     </body>
 </html>

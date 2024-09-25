@@ -251,3 +251,14 @@ shopLinks.forEach(link => {
         }, 150);
     });
 });
+
+
+// adding event listeners to sign up and login buttons
+
+loginButton.addEventListener('click', () => {
+    window.location.href = "loginPage.html";
+})
+
+registerButton.addEventListener('click', () => {
+    window.location.href = "registrationPage.html";
+})

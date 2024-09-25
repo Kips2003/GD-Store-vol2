@@ -119,15 +119,15 @@
         width: 100%;
         z-index: 1000;
     }
-
+    main{
+        padding-top: 120px;
+    }
 
     /* 
         section one styles section
     */
 
-main{
-    padding-top: 120px;
-}
+
 .sec-one{
     display: flex;
     justify-content: center;

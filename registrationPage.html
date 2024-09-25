@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- adding description, author and e.t.c -->
+     <meta name="description" content="you can buy every furniture in the shop and also customize it too">
+     <meta name="keywords" content="furniture,livingroom,bedroom,kitchen,decorations,">
+     <meta name="author" content="Giorgi Kiparoidze">
+ 
+     <!-- FB meta tags -->
+     <meta property="og:url"                content="https://gd-store.ge" />
+     <meta property="og:type"               content="Shopping" />
+     <meta property="og:title"              content="When you don't want go out for but furniture" />
+     <meta property="og:description"        content="you can buy every furniture in the shop and also customize it too" />
+     <meta property="og:image"              content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaovXSi0D3tmfz6enTMVouEEwdf_mDkxyBTw&s" />
+
+     <link rel="stylesheet" href="css/reset.css">
+     <link rel="stylesheet" href="css/fonts.css">
+     <link rel="stylesheet" href="css/logo.css">
+     <link rel="stylesheet" href="css/loginPage.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="wraper">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-div">
+                        <span class="icon-logo"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span></span>    
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form id="registration-form">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+                <br></br>
+                
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+                <br></br>
+                
+                <label for="userName">User Name:</label>
+                <input type="text" id="userName" required>
+                <br></br>
+                
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input type="date" id="dateOfBirth" required>
+                <br></br>
+                
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" required>
+                <br></br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <br></br>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <br></br>
+
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        
+    </main>
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', async function(event){
+            event.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const userName = document.getElementById('userName').value;
+            const dateOfBirth = new Date(document.getElementById('dateOfBirth').value).toISOString();
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const requestData = {
+                firstName: firstName,
+                lastName: lastName,
+                userName: userName,
+                dateOfBirth: dateOfBirth,
+                phoneNumber: phoneNumber,
+                email: email,
+                password: password
+            };
+
+            try {
+                const response = await fetch('http://localhost:5134/api/Auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(response.json());
+                }
+
+                const data = await response.json();
+                console.log('Registration successful', data);
+                // Handle successful registration (e.g., redirect or show a message)
+            } catch (error) {
+                console.error('Error:', error);
+                // Handle registration error (e.g., show an error message)
+            }
+        })
+    </script>
+</body>
+</html>
