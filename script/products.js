@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const images = [];
 
-        data.images.forEach(element => {
+        data.Images.forEach(element => {
             const imgTag = document.createElement('img');
             imgTag.src = element;
             imgTag.width = `${sliderDiv.clientWidth}`;
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         imageTrack.style.width = `${images.length * sliderDiv.clientWidth}px`;
         imageTrack.style.height = `${sliderDiv.clientHeight}px`;
-
 
         let interval;
 
@@ -209,13 +208,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const productTitle = document.querySelector('.top-title > h1');
 
-        productTitle.innerHTML = `${data.title}`;
+        productTitle.innerHTML = `${data.Title}`;
 
 
         //adding star rating and rating number to the page
     
             // Calculate the average rating
-        let reviews = data.reviews;
+        let reviews = data.Reviews;
 
 
         function calculateAverageRating(reviews) {
@@ -253,11 +252,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let priceDiv = document.querySelector('.price-discount');
         
         if(!(data.discountPercetage)){
-            priceDiv.innerHTML = `<p>-${(data.discountPercentage).toFixed(1)}%</p>
-            <p>${(data.price - (data.price * (data.discountPercentage/100))).toFixed(2)}$</p>`;
+            priceDiv.innerHTML = `<p>${data.Price}.00$</p>`;
         }
         else{
-            priceDiv.innerHTML = `<p>${data.price}$`;
+            priceDiv.innerHTML = `<p>${data.Price}.00$`;
         }
     }
     catch(e){
