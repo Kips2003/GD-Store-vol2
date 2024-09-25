@@ -32,7 +32,7 @@
 
 let productDiv = document.getElementById('products');
 
-fetch('http://localhost:5134/api/Product')
+fetch('https://gd-store.ge/api/Product')
 .then(res => res.json())
 .then(products => {
 
