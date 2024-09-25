@@ -1,0 +1,217 @@
+.header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    padding: 5px 0;
+    background-color: #fff8f2;
+    /* margin-top: -120px; */
+    z-index: 1000;
+  }
+  
+  /* wraper */
+  .wraper {
+    max-width: 1440px;
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    /* padding: 20px 0; */
+  }
+  
+  /* icon logo font  */
+  .logo {
+    order: 1;
+  }
+  .icon-logo {
+    font-size: 100px;
+  }
+  .logo-div {
+    z-index: 1000;
+  }
+  .search {
+    position: relative; /* Allows absolute positioning of the icon */
+  }
+  
+  .icon {
+    position: absolute;
+    left: 10px; /* Adjust as necessary */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevents clicks on the icon */
+    color: #aaa; /* Optional: Change color for visibility */
+  }
+  
+  input.empty {
+    font-family: Arial, sans-serif; /* Set default font for input */
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f9e3d0;
+    padding: 10px 20px 10px 40px; /* Add padding to the left for the icon */
+  }
+  
+  /* Placeholder styling */
+  input.empty::placeholder {
+    text-transform: none; /* Ensure placeholder is not uppercase */
+    color: #aaa; /* Optional: Change color for visibility */
+  }
+  
+  
+  .sign-log {
+    display: flex;
+    column-gap: 10px;
+    order: 3;
+  }
+  .sign-log p {
+    font-size: 16px;
+    font-family: "Rubik";
+    color: #fff;
+  }
+  .log-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 0 25px;
+    border-radius: 20px;
+    background-color: #2c1b13;
+    order: 2;
+  }
+  
+  .sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 0 25px;
+    background-color: #f9e3d0;
+    border-radius: 20px;
+    order: 3;
+  }
+  
+  .sign-in p {
+    color: black;
+  }
+  
+  .fa-magnifying-glass {
+    font-size: 20px;
+    margin-right: 5px;
+    color: #2c1b13;
+  }
+  .search{
+    order: 2;
+  }
+  .search-main {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    padding: 20px 20px 0 20px;
+    transform: translateY(0px);
+    z-index: 12;
+  }
+  .search-main > input {
+    width: 100%;
+    z-index: 1000;
+  }
+  .fa-magnifying-glass.active{
+    display: none;
+  }
+  
+  
+  main {
+    padding-top: 200px;
+  }
+.photo-slide{
+    border: 1px solid black;
+    width: 300px;
+    overflow: hidden;
+}
+.prev, .next{
+    position: absolute;
+    display: none;
+}
+.onscreen{
+    display: block;
+}
+
+.prev{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-150px) translateX(5px);
+}
+.next{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transform: translateX(255px) translateY(-150px);
+}
+
+.dots {
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+.sec-one{
+    display: flex;
+    justify-content: center;
+}
+.sec-one-wraper{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    width: 90%;
+}
+.leftside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+.right-side{
+    width: 70%;
+    display: flex;
+
+}
+.right-side > .left{
+    width: 50%;
+}
+.right-side > .right{
+    width: 50%;
+}

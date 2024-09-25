@@ -64,14 +64,14 @@ window.addEventListener("resize", updateSearchDisplay);
 
 
 function fetchAllProducts(){
-  fetch("http://localhost:5134/api/Product") // Adjust this API endpoint as per your backend
+  fetch("https://gd-store.ge/api/Product") // Adjust this API endpoint as per your backend
   .then(response => response.json())
   .then(data => displayProducts(data))
   .catch(error => console.error('Error fetching products:', error));
 }
 
 function fetchProductsByQuery(title){
-  fetch(`http://localhost:5134/api/Product/WithTitle/${title}`)
+  fetch(`https://gd-store.ge/api/Product/WithTitle/${title}`)
   .then(response => response.json())
   .then(data => displayProducts(data))
   .catch(error => console.error('Error fetching products:', error));
