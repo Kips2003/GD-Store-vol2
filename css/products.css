@@ -133,19 +133,43 @@
     display: none;
   }
   
-  
+  .background{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-image: url("../images/featured_image_-_living_room_furniture_layout_1600x@2x.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
+  }
+  .background::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    filter: blur(5px);
+  }
+
   main {
-    padding-top: 200px;
+    padding-top: 110px;
   }
   .photos{
-    height: 400px;
+    height: 450px;
     display: flex;
+    align-items: center;
   }
 .photo-slide{
     border: 1px solid black;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 450px;
     overflow: hidden;
+    border-radius: 10px;
 }
 .prev, .next{
     position: absolute;
@@ -161,7 +185,7 @@
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    transform: translateY(-150px) translateX(5px);
+    transform: translateY(-230px) translateX(5px);
 }
 .next{
     width: 40px;
@@ -169,7 +193,7 @@
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    transform: translateX(255px) translateY(-150px);
+    transform: translateX(355px) translateY(-230px);
 }
 
 .dots {
@@ -196,12 +220,16 @@
 .sec-one{
     display: flex;
     justify-content: center;
+    background-color: white;
+    padding: 80px;
 }
 .sec-one-wraper{
     display: flex;
     justify-content: space-between;
+
     max-width: 1440px;
     width: 90%;
+    padding: 20px;
 }
 .leftside{
     display: flex;
@@ -210,15 +238,198 @@
     width: 30%;
 }
 .right-side{
-    width: 70%;
+    width: 70vw;
     display: flex;
 
+}
+.left{
+  display: flex;
+  /* justify-content: right; */
+  justify-content: space-between;
+  /* align-content: space-between; */
+  flex-direction: column;
+}
+.right-side{
+  display: flex;
+  justify-content: right;
 }
 .right-side > .left{
     width: 50%;
 }
 .right-side > .right{
-    width: 50%;
+    width: 30%;
+}
+.top-title{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: right;
+  row-gap: 30px;
+}
+.top-title h1{
+  font-size: 30px;
+  text-align: right;
+  font-family: "Inter";
+  font-weight: 700;
+  
+}
+.rating{
+  display: flex;
+  justify-content: right;
+}
+.star-rating{
+
+}
+.price-discount{
+  display: flex;
+  justify-content: right;
+  width: 100%;
+}
+.price{
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: right;
+  display: flex;
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.right{
+  display: flex;
+  justify-content: center;
+}
+
+.product-desc-num {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, auto);
+  gap: 0;
+  border-radius: 12px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.detail-row:nth-child(odd) {
+  background-color: #f9e3d0;
+}
+
+.detail-row:nth-child(even) {
+  background-color: #fff8f2;
+}
+
+.detail-row:hover {
+  background-color: #ececec;
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+}
+
+.value {
+  font-weight: 400;
+  color: #666;
+}
+
+.detail-row:not(:last-child) {
+  border-bottom: 1px solid #e2e2e2;
+}
+.full-desc{
+  display: flex;
+}
+.sec-two{
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+.sec-two-wraper{
+  max-width: 1440px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.description{
+  width: 45%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  row-gap: 20px;
+  border-radius: 20px;
+}
+.description h2{
+  text-align: center;
+  width: 85%;
+  font-size: 30px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+.description p{
+  width: 80%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 35px;
+  font-family: "Inter";
+}
+.reviews{
+  width: 45%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  row-gap: 20px;
+  border-radius: 20px;
+}
+.reviews h2{
+  text-align: center;
+  width: 85%;
+  font-size: 30px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+.reviews p{
+  width: 80%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 35px;
+  font-family: "Inter";
 }
 
 
+/* Optional: Additional styling for responsiveness */
+@media (max-width: 500px) {
+  .product-desc-num {
+    width: 90%;
+  }
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .label, .value {
+    padding: 5px 0;
+  }
+}

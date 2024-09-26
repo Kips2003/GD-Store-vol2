@@ -223,6 +223,16 @@ main {
 .rating p {
   color: orangered;
 }
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+.pagination-wraper{
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  column-gap: 7px;
+}
 
 @media (max-width: 830px) {
   main {

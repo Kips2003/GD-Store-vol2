@@ -337,3 +337,12 @@ main {
 .rating p {
   color: orangered;
 }
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+.pagination-wraper{
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}

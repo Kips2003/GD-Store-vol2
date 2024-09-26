@@ -1,3 +1,38 @@
+
+import { updateSearchDisplay } from "./module.js";
+
+updateSearchDisplay();
+window.addEventListener("resize", updateSearchDisplay);
+
+const loginButton = document.querySelector(".log-in");
+const registerButton = document.querySelector(".sign-in");
+loginButton.style.cursor = "pointer";
+registerButton.style.cursor = "pointer";
+
+loginButton.addEventListener("click", () => {
+  window.location.href = "loginPage.html";
+});
+
+registerButton.addEventListener("click", () => {
+  window.location.href = "registrationPage.html";
+});
+
+document.getElementById('iconified').addEventListener('keydown', function(event) {
+    // Check if the Enter key was pressed
+    if (event.Ekey === "Enter" || event.keyCode === 13) {
+        const title = event.target.value;
+  
+        // Redirect to shopping.html with the query
+        if (title) {
+            window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
+        } else {
+            window.location.href = 'shopping.html?limit=10'; // Default to show all products
+        }
+    }
+  });
+
+  
+
 let logo = document.querySelector('.logo');
 logo.style.cursosr = 'pointer';
 
@@ -19,8 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try{
         const response = await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
-        const result = await response.json();
-        const data = result.Result;
+        const data = await response.json();
 
         console.log(data);
 
@@ -30,8 +64,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     */
 
         const images = [];
+        
 
-        data.Images.forEach(element => {
+
+        data.images.forEach(element => {
             const imgTag = document.createElement('img');
             imgTag.src = element;
             imgTag.width = `${sliderDiv.clientWidth}`;
@@ -41,8 +77,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageTrack.appendChild(imgTag);
         });
 
-        imageTrack.style.width = `${images.length * sliderDiv.clientWidth}`;
-        imageTrack.style.height = `${sliderDiv.clientHeight}`;
+        imageTrack.style.width = `${images.length * sliderDiv.clientWidth}px`;
+        imageTrack.style.height = `${sliderDiv.clientHeight}px`;
 
         let interval;
 
@@ -211,7 +247,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const productTitle = document.querySelector('.top-title > h1');
 
-        productTitle.innerHTML = `${data.Title}`;
+        productTitle.innerHTML = `${data.title}`;
 
 
         //adding star rating and rating number to the page
@@ -254,8 +290,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         let priceDiv = document.querySelector('.price-discount');
         
-        priceDiv.innerHTML = `<p>${data.Price}.00$`;
+        priceDiv.innerHTML = `<p class="price">${data.price}.00$</p>`;
         
+        document.querySelector('.product-desc-num').innerHTML = `<div class="details-grid">
+            <div class="detail-row">
+                <div class="label">Weight</div>
+                <div class="value">${data.weight}</div>
+            </div>
+            <div class="detail-row">
+                <div class="label">Width</div>
+                <div class="value">${data.width}</div>
+            </div>
+            <div class="detail-row">
+                <div class="label">Depth</div>
+                <div class="value">${data.depth}</div>
+            </div>
+            <div class="detail-row">
+                <div class="label">Height</div>
+                <div class="value">${data.height}</div>
+            </div>
+            </div>`;
+
+        document.querySelector('.description').innerHTML += `<p>${data.description}</p>`;
+ 
     }
     catch(e){
         console.log(e);

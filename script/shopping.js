@@ -1,96 +1,86 @@
-const search = document.querySelector(".search");
+import { updateSearchDisplay } from "./module.js";
 
-// Function to check the width and update the display property for search
-function updateSearchDisplay() {
-  const documentWidth = document.documentElement.clientWidth;
+updateSearchDisplay();
+window.addEventListener("resize", updateSearchDisplay);
 
-  if (documentWidth < 720) {
-    // Move the search bar into a different container on small screens
-    document.querySelector(".sign-log").appendChild(search);
-    search.style.order = "0";
-    search.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i>`;
-    search.style.cursor = "pointer";
+const loginButton = document.querySelector(".log-in");
+const registerButton = document.querySelector(".sign-in");
+loginButton.style.cursor = "pointer";
+registerButton.style.cursor = "pointer";
 
-    // Add click event to display the search input
-    search.addEventListener("click", () => {
-      let searchSection = document.querySelector(".search-main");
-      if (searchSection) {
-        // If search section exists, toggle its visibility
-        if (
-          searchSection.style.display ===
-          "none" /*|| searchSection.style.display === ''*/
-        ) {
-          searchSection.style.display = "block"; // Make sure it's visible
-        } else {
-          searchSection.style.display = "none"; // Hide it again on subsequent clicks
-        }
-      } else {
-        // If search section doesn't exist, create and append it at the top of the main element
-        const searchMain = document.createElement("section");
-        searchMain.classList.add("search-main");
-        searchMain.innerHTML = `
-                    <input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   Search"/>
-                `;
-        searchMain.style.padding = "10px"; // Add some padding to make it noticeable
-        searchMain.style.backgroundColor = "#fff8f2"; // Ensure background is visible
-        searchMain.style.position = "fixed"; // So it shows in flow of the page
-        searchMain.style.zIndex = "12"; // Keep it above other content
+loginButton.addEventListener("click", () => {
+  window.location.href = "loginPage.html";
+});
 
-        // Insert the searchMain element as the first child of the main element
-        document
-          .querySelector("main")
-          .insertBefore(searchMain, document.querySelector("main").firstChild);
-      }
-    });
-  } else {
-    // Move the search bar back and restore its appearance on larger screens
-    document.querySelector(".wraper").appendChild(search);
-    search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   S e a r c h"/>`;
-    search.style.order = "2";
-    let searchSection = document.querySelector(".search-main");
-    //searchSection.style.display = "none";
-    if (searchSection) {
-      searchSection.style.display = "none"; // Hide the extra search section on larger screens
+registerButton.addEventListener("click", () => {
+  window.location.href = "registrationPage.html";
+});
+
+
+function fetchAllProducts(limit, page){
+  fetch("https://gd-store.ge/api/Product") // Adjust this API endpoint as per your backend
+  .then(response => response.json())
+  .then(data => displayProducts(data, limit, page))
+  .catch(error => console.error('Error fetching products:', error));
+}
+
+function fetchProductsByQuery(title, limit, page){
+  fetch(`https://gd-store.ge/api/Product/WithTitle/${title}`)
+  .then(response => response.json())
+  .then(data => displayProducts(data, limit,page, title))
+  .catch(error => console.error('Error fetching products:', error));
+}
+
+function storeViewedProduct(productId){
+  let viewedProducts = JSON.parse(localStorage.getItem('viewedProducts')) || [];
+
+  if(!viewedProducts.includes(productId)){
+    viewedProducts.push(productId);
+
+    if(viewedProducts.length > 5){
+      viewedProducts.shift();
     }
+
+    localStorage.setItem('viewedProducts', JSON.stringify(viewedProducts));
   }
 }
 
-// Run the function on page load
-updateSearchDisplay();
+function displayViewedProducts(){
+  const viewedProducts = JSON.parse(localStorage.getItem('viewedProducts')) || [];
 
-// Add the event listener for window resize to update the search bar display dynamically
-window.addEventListener("resize", updateSearchDisplay);
+    // Clear the container
+    
+    // Loop through the viewed products and create elements to display them
+    viewedProducts.forEach(productId => {
+        const productContainer = document.getElementById(`product${productId}`);
+        const justViewed = '<p>Just Viwed</p>';
 
-
-
-function fetchAllProducts(){
-  fetch("https://gd-store.ge/api/Product") // Adjust this API endpoint as per your backend
-  .then(response => response.json())
-  .then(data => displayProducts(data))
-  .catch(error => console.error('Error fetching products:', error));
+        productContainer.innerHTML += justViewed;
+    });
 }
-
-function fetchProductsByQuery(title){
-  fetch(`https://gd-store.ge/api/Product/WithTitle/${title}`)
-  .then(response => response.json())
-  .then(data => displayProducts(data))
-  .catch(error => console.error('Error fetching products:', error));
-}
-
 
 let productDiv = document.getElementById("products");
 
-function displayProducts(products){
-  for (let i = 0; i < products.length; i++) {
-    let product = products[i];
+function displayProducts(products, maxProduct, page = "1", title = ""){
+  console.log(products);
+  page = parseInt(page);
+  if(products.length > 10){
+    const pageCount =parseInt(products.length/10);
+    for(let i = -1; i < pageCount; i++){
+      document.querySelector('.pagination-wraper').innerHTML+= `<a href="shopping.html?limit=10&title=${title}&page=${i+2}">${i+2}</a>`;
+    }
+  }
+
+  for (let i = 0; i < parseInt(maxProduct); i++) {
+    let product = products[i+((page-1)*10)];
     let averageRating = 0;
 
-    productDiv.innerHTML += `<div id="product${product.Id}" class="product-wraper">
+    productDiv.innerHTML += `<div id="product${product.id}" class="product-wraper">
           <div class="photo">
-              <img class="main-page-photo" src="${product.Thumbnail}" alt="">
+              <img class="main-page-photo" src="${product.thumbnail}" alt="">
           </div>
           <h2 class="title">
-              ${product.Title}
+              ${product.title}
           </h2>
           <div class="price-rating">
               <div class="rating">
@@ -98,21 +88,21 @@ function displayProducts(products){
                   <p>${averageRating}</p>
               </div>
               <p class="price">
-                  ${product.Price}.00$
+                  ${product.price}.00$
               </p>
           </div>
       </div>`;
   }
-
+  displayViewedProducts();
 
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
 
-    document
-      .getElementById(`product${product.Id}`)
+    document.getElementById(`product${product.id}`)
       .addEventListener("click", () => {
-        console.log(product.Id);
-        window.location.href = `product.html?id=${product.Id}`;
+        console.log(product.id);
+        storeViewedProduct(product.id);
+        window.location.href = `product.html?id=${product.id}`;
       });
   }
 }
@@ -124,13 +114,21 @@ function getQueryParam(param) {
 
 // Main execution
 const title = getQueryParam('title');
+let pagination = getQueryParam('limit');
+const pageNumber = getQueryParam("page");
 
 if (title) {
   // If there's a query, fetch and display products by search query
-  fetchProductsByQuery(title);
+  if(pageNumber)
+    fetchProductsByQuery(title, pagination,pageNumber);
+  else
+  fetchProductsByQuery(title, pagination)
 } else {
   // Otherwise, fetch and display all products
-  fetchAllProducts();
+  if(pageNumber)
+    fetchAllProducts(pagination, pageNumber);
+  else
+    fetchAllProducts(pagination);
 }
 
 document.getElementById('iconified').addEventListener('keydown', function(event) {
@@ -140,9 +138,9 @@ document.getElementById('iconified').addEventListener('keydown', function(event)
 
       // Redirect to shopping.html with the query
       if (title) {
-          window.location.href = `shopping.html?title=${encodeURIComponent(title)}`;
+          window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
       } else {
-          window.location.href = 'shopping.html'; // Default to show all products
+          window.location.href = 'shopping.html?limit=10'; // Default to show all products
       }
   }
 });

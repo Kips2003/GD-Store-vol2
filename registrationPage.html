@@ -15,12 +15,12 @@
      <meta property="og:title"              content="When you don't want go out for but furniture" />
      <meta property="og:description"        content="you can buy every furniture in the shop and also customize it too" />
      <meta property="og:image"              content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaovXSi0D3tmfz6enTMVouEEwdf_mDkxyBTw&s" />
+     <title>GD Store</title>
 
      <link rel="stylesheet" href="css/reset.css">
      <link rel="stylesheet" href="css/fonts.css">
      <link rel="stylesheet" href="css/logo.css">
      <link rel="stylesheet" href="css/loginPage.css">
-    <title>Document</title>
 </head>
 <body>
     <header class="header">
@@ -71,27 +71,37 @@
         
     </main>
     <script>
-        document.getElementById('registration-form').addEventListener('submit', async function(event){
-            event.preventDefault();
-
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const userName = document.getElementById('userName').value;
-            const dateOfBirth = new Date(document.getElementById('dateOfBirth').value).toISOString();
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            const requestData = {
-                firstName: firstName,
-                lastName: lastName,
-                userName: userName,
-                dateOfBirth: dateOfBirth,
-                phoneNumber: phoneNumber,
-                email: email,
-                password: password
+        // Function to save form data to sessionStorage
+        function saveFormData() {
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                userName: document.getElementById('userName').value,
+                dateOfBirth: document.getElementById('dateOfBirth').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
             };
+            sessionStorage.setItem('registrationData', JSON.stringify(formData));
+        }
 
+        // Function to load form data from sessionStorage
+        function loadFormData() {
+            const savedData = sessionStorage.getItem('registrationData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                document.getElementById('firstName').value = formData.firstName || '';
+                document.getElementById('lastName').value = formData.lastName || '';
+                document.getElementById('userName').value = formData.userName || '';
+                document.getElementById('dateOfBirth').value = formData.dateOfBirth || '';
+                document.getElementById('phoneNumber').value = formData.phoneNumber || '';
+                document.getElementById('email').value = formData.email || '';
+                document.getElementById('password').value = formData.password || '';
+            }
+        }
+
+        // Function to register user
+        async function registerUser(requestData) {
             try {
                 const response = await fetch('https://gd-store.ge/api/Auth/register', {
                     method: 'POST',
@@ -102,17 +112,44 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(response.json());
+                    throw new Error(await response.text());
                 }
 
                 const data = await response.json();
                 console.log('Registration successful', data);
                 // Handle successful registration (e.g., redirect or show a message)
+
+                // Clear the sessionStorage after successful registration
+                sessionStorage.removeItem('registrationData');
             } catch (error) {
                 console.error('Error:', error);
                 // Handle registration error (e.g., show an error message)
             }
-        })
+        }
+
+        // Load form data on page load
+        window.addEventListener('DOMContentLoaded', loadFormData);
+
+        // Event listener for the registration form
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Save the form data to sessionStorage
+            saveFormData();
+
+            const requestData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                userName: document.getElementById('userName').value,
+                dateOfBirth: new Date(document.getElementById('dateOfBirth').value).toISOString(),
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            // Call the registerUser function with the requestData
+            registerUser(requestData);
+        });
     </script>
 </body>
 </html>
