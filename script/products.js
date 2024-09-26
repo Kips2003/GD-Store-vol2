@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try{
         const response = await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
-        const data = await response.json();
+        const json = await response.json();
+        const data = json.Result;
 
 /*
         this is the part where all the photos from the api will be brought to front end 
@@ -214,36 +215,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         //adding star rating and rating number to the page
     
             // Calculate the average rating
-        let reviews = data.Reviews;
+       // let reviews = data.Reviews;
 
 
-        function calculateAverageRating(reviews) {
-            const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
-            return totalRating / reviews.length;
-        }
+        // function calculateAverageRating(reviews) {
+        //     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+        //     return totalRating / reviews.length;
+        // }
 
         // Function to update star colors
-        function updateStarRating(averageRating) {
-            for (let i = 1; i <= 5; i++) {
-                const star = document.getElementById(`star${i}`);
-                if (i <= averageRating) {
-                    star.classList.remove('fa-regular');
-                    star.classList.add('fa-solid', 'fa-star');
-                    star.style.color = 'orangered';
-                } else {
-                    star.classList.remove('fa-solid', 'fa-star');
-                    star.classList.add('fa-regular', 'fa-star');
-                    star.style.color = '#ccc'; 
-                }
-            }
-        }
+        // function updateStarRating(averageRating) {
+        //     for (let i = 1; i <= 5; i++) {
+        //         const star = document.getElementById(`star${i}`);
+        //         if (i <= averageRating) {
+        //             star.classList.remove('fa-regular');
+        //             star.classList.add('fa-solid', 'fa-star');
+        //             star.style.color = 'orangered';
+        //         } else {
+        //             star.classList.remove('fa-solid', 'fa-star');
+        //             star.classList.add('fa-regular', 'fa-star');
+        //             star.style.color = '#ccc'; 
+        //         }
+        //     }
+        // }
 
-        // Calculate and update the stars
-        const averageRating = calculateAverageRating(reviews);
-        updateStarRating(averageRating);
+        // // Calculate and update the stars
+        // const averageRating = calculateAverageRating(reviews);
+        // updateStarRating(averageRating);
 
         // adding float number of rating
-        document.querySelector('.rating-count').innerHTML = `<p>${averageRating.toFixed(1)}</p>`;
+        // document.querySelector('.rating-count').innerHTML = `<p>${averageRating.toFixed(1)}</p>`;
 
 
 
@@ -251,12 +252,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         let priceDiv = document.querySelector('.price-discount');
         
-        if(!(data.discountPercetage)){
-            priceDiv.innerHTML = `<p>${data.Price}.00$</p>`;
-        }
-        else{
-            priceDiv.innerHTML = `<p>${data.Price}.00$`;
-        }
+        priceDiv.innerHTML = `<p>${data.Price}.00$`;
+        
     }
     catch(e){
         console.log(e);
