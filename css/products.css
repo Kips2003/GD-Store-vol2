@@ -137,9 +137,14 @@
   main {
     padding-top: 200px;
   }
+  .photos{
+    height: 400px;
+    display: flex;
+  }
 .photo-slide{
     border: 1px solid black;
     width: 300px;
+    height: 400px;
     overflow: hidden;
 }
 .prev, .next{
@@ -215,3 +220,5 @@
 .right-side > .right{
     width: 50%;
 }
+
+

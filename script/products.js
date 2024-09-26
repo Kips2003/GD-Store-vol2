@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try{
         const response = await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
-        const json = await response.json();
-        const data = json.Result;
+        const result = await response.json();
+        const data = result.Result;
+
+        console.log(data);
 
 /*
         this is the part where all the photos from the api will be brought to front end 
@@ -39,8 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageTrack.appendChild(imgTag);
         });
 
-        imageTrack.style.width = `${images.length * sliderDiv.clientWidth}px`;
-        imageTrack.style.height = `${sliderDiv.clientHeight}px`;
+        imageTrack.style.width = `${images.length * sliderDiv.clientWidth}`;
+        imageTrack.style.height = `${sliderDiv.clientHeight}`;
 
         let interval;
 
@@ -52,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             also if the user changes the photo the timer will reset
         */
         
-        startAutoSlide();
+        //startAutoSlide();
 
         //lets add dots first and its functions
 
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
                 imageTrack.style.transform = `translateX(${shift}px)`;
-                startAutoSlide();
+                //startAutoSlide();
             });
         }
         document.getElementById('dot0').classList.add('active');
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
             imageTrack.style.transform = `translateX(${shift}px)`;
-            startAutoSlide();
+            //startAutoSlide();
         })
 
         //next button
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
             imageTrack.style.transform = `translateX(${shift}px)`;
-            startAutoSlide();
+            //startAutoSlide();
         })
 
 
@@ -200,7 +202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Update slider position and dots
                 imageTrack.style.transform = `translateX(${shift}px)`;
                 dots.forEach((dot, i) => dot.classList.toggle('active', i === shift / (viewFinderSize)));
-                startAutoSlide();
+                //startAutoSlide();
             }
         }
 
