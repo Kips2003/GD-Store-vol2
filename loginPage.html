@@ -81,10 +81,15 @@
       </div>
     </main>
     <script>
+       function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+        }
+
       document
         .getElementById("loginForm")
-        .addEventListener("submit", async function (evenet) {
-          evenet.preventDefault();
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
@@ -104,16 +109,19 @@
             });
 
             if (!response.ok) {
-              throw new Error(response);
+              const errorText = await response.text();
+              throw new Error(`Login failed: ${errorText}`);          
             }
 
             const data = await response.json();
             console.log('Login successful', data);
 
-            // Store the token in a cookie
-            setCookie('authToken', data.token, 7);
-
-            window.location.href = "index.html";
+            if (data.token) {
+                setCookie('authToken', data.token, 7);
+                window.location.href = "index.html";
+            } else {
+                throw new Error("Token not found in response");
+            }
           } catch (error) {
             document.getElementById("loginMessage").textContent = error.message;
             console.error(error);
