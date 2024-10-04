@@ -45,23 +45,26 @@ function storeViewedProduct(productId){
   }
 }
 
-function displayViewedProducts(){
+function displayViewedProducts() {
   const viewedProducts = JSON.parse(localStorage.getItem('viewedProducts')) || [];
 
-    // Clear the container
-    
-    // Loop through the viewed products and create elements to display them
-    viewedProducts.forEach(productId => {
-        const productContainer = document.getElementById(`product${productId}`);
-        const justViewed = '<p>Just Viwed</p>';
+  // Loop through the viewed products and create elements to display them
+  viewedProducts.forEach(productId => {
+    const productContainer = document.getElementById(`product${productId}`);
 
-        productContainer.innerHTML += justViewed;
-    });
+    // Check if the element exists before modifying its content
+    if (productContainer) {
+      const justViewed = '<p>Just Viewed</p>';
+      productContainer.innerHTML += justViewed;
+    } else {
+      console.warn(`Element with ID "product${productId}" not found on the page.`);
+    }
+  });
 }
 
 let productDiv = document.getElementById("products");
 
-function displayProducts(products, maxProduct, page = "1", title = ""){
+function displayProducts(products, maxProduct, page, title = ""){
   console.log(products);
   page = parseInt(page);
   if(products.length > 10){
@@ -69,15 +72,29 @@ function displayProducts(products, maxProduct, page = "1", title = ""){
     for(let i = -1; i < pageCount; i++){
       document.querySelector('.pagination-wraper').innerHTML+= `<a href="shopping.html?limit=10&title=${title}&page=${i+2}">${i+2}</a>`;
     }
+  }               
+  if(page*10 > products.length){
+    maxProduct = products.length - (page - 1)*10;
   }
-
-  for (let i = 0; i < parseInt(maxProduct); i++) {
-    let product = products[i+((page-1)*10)];
+  for (let i = 0; i < maxProduct; i++) {
+    let index = i + ((page - 1) * 10);
+    let product = products[index];
     let averageRating = 0;
+
+    if (!product) {
+      console.warn(`Product is undefined at index ${index}. Skipping...`);
+      continue;  // Skip to the next iteration instead of returning
+    }
+  
+    // Ensure that the product has an ID
+    if (!product.id) {
+      console.warn(`Product at index ${index} does not have an ID:`, product);
+      continue;  // Skip this product if ID is missing
+    }
 
     productDiv.innerHTML += `<div id="product${product.id}" class="product-wraper">
           <div class="photo">
-              <img class="main-page-photo" src="${product.thumbnail}" alt="">
+              <img class="main-page-photo" src="https://gd-store.ge/${product.thumbnail}" alt="">
           </div>
           <h2 class="title">
               ${product.title}
@@ -92,11 +109,14 @@ function displayProducts(products, maxProduct, page = "1", title = ""){
               </p>
           </div>
       </div>`;
+      
   }
   displayViewedProducts();
 
-  for (let i = 0; i < products.length; i++) {
-    let product = products[i];
+
+  for (let i = 0; i < maxProduct; i++) {
+    let index = i + ((page - 1) * 10);
+    let product = products[index];
 
     document.getElementById(`product${product.id}`)
       .addEventListener("click", () => {

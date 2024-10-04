@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gd Store</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/logo.css" />
+    <style>
+        .header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        padding: 5px 0;
+        background-color: #fff8f2;
+        /* margin-top: -120px; */
+        z-index: 1000;
+        }
+
+        /* wraper */
+        .wraper {
+        max-width: 1440px;
+        width: 90%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: center;
+        /* padding: 20px 0; */
+        }
+
+        /* icon logo font  */
+        .logo {
+        order: 1;
+        }
+        .icon-logo {
+        font-size: 120px;
+        }
+        .logo-div {
+        z-index: 1000;
+        }
+
+        body {
+        font-family: "Inter";
+        }
+
+        main {
+        padding-top: 160px;
+        padding-bottom: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        }
+        h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        }
+
+        .input-group {
+        margin-bottom: 15px;
+        }
+
+        label {
+        display: block;
+        margin-bottom: 5px;
+        }
+        select{
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;    
+        font-family: "Inter";
+        }
+        input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        }
+
+        button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        button:hover {
+        background-color: #4cae4c;
+        }
+
+        p {
+        text-align: center;
+        margin-top: 15px;
+        }
+
+        a {
+        color: #5cb85c;
+        }
+        .container {
+        background-color: #fff8f2;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        }
+        #productForm{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .background{
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            background-image: url("../images/featured_image_-_living_room_furniture_layout_1600x@2x.webp");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -2;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensures padding is included in the width */
+            resize: none; /* Prevent manual resizing */
+            overflow: hidden; /* Hide overflow for smooth expansion */
+        }
+        .row1{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .row2{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .width{
+            width: 100%;
+            max-width: 200px;
+            margin-right: 5px;
+        }
+        .depth{
+            width: 100%;
+            max-width: 200px;
+
+        }
+        .weight{
+            width: 100%;
+            max-width: 200px;
+            margin-right: 5px;
+        }
+        .price{
+            width: 100%;
+            max-width: 200px;
+            margin-right: 5px;
+        }
+        .stock{
+            width: 100%;
+            max-width: 200px;
+        }
+        .height{
+            max-width: 200px;
+            width: 100%;
+        }
+        .barcode{
+            width: 100%;
+            max-width: 200px;
+        }
+        .qrcode{
+            width: 100%;
+            max-width: 200px;
+            margin-right: 5px;
+        }
+        .row3{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .row4{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="wraper">
+          <div class="logo">
+            <a href="index.html">
+              <div class="logo-div">
+                <span class="icon-logo"
+                  ><span class="path1"></span><span class="path2"></span
+                  ><span class="path3"></span><span class="path4"></span
+                  ><span class="path5"></span><span class="path6"></span
+                  ><span class="path7"></span><span class="path8"></span
+                  ><span class="path9"></span><span class="path10"></span
+                  ><span class="path11"></span><span class="path12"></span
+                  ><span class="path13"></span><span class="path14"></span
+                  ><span class="path15"></span><span class="path16"></span
+                  ><span class="path17"></span><span class="path18"></span
+                ></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </header>
+      <div class="background">
+
+      </div>
+      <main>
+        <div class="container">
+            <h2>Add a New Product</h2>
+            <form id="productForm">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <br></br>
+                
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <br></br>
+                
+                <label for="categoryId">Category:</label>
+                <select id="categoryId" name="categoryId">
+                    <option value="1">Kitchen</option>
+                    <option value="2">Living Room</option>
+                    <option value="3">Decoration</option>
+                    <option value="4">Guest Room</option>
+                    <option value="5">Dining Room</option>
+                    <option value="6">Bed Room</option>
+                </select>
+                <br><br>
+        
+                <div class="row4">
+                    <div class="price">
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" name="price" required>
+                        <br></br>
+                    </div>
+    
+                    <div class="stock">
+                        <label for="stock">Stock:</label>
+                        <input type="number" id="stock" name="stock" required>
+                        <br></br>
+                    </div>
+                </div>
+        
+        
+                
+                
+                
+                <div class="row1">
+                    <div class="weight">
+                        <label for="weight">Weight:</label>
+                        <input type="number" id="weight" name="weight" step="0.01" required>
+                        <br></br>
+                    </div>
+
+                    <div class="height">
+                        <label for="height">Height:</label>
+                        <input type="number" id="height" name="height" step="0.01" required>
+                        <br></br>                        
+                    </div>
+                </div>
+
+                <div class="row2">
+                    <div class="width">
+                        <label for="width">Width:</label>
+                        <input type="number" id="width" name="width" step="0.01" required>
+                        <br></br>
+                    </div>
+                    
+                    <div class="depth">
+                        <label for="depth">Depth:</label>
+                        <input type="number" id="depth" name="depth" step="0.01" required>
+                        <br></br>
+                    </div>
+                </div>
+                
+                
+
+                <div class="row3">
+                    <div class="qrcode">
+                        <label for="qrCode">QR Code:</label>
+                        <input type="text" id="qrCode" name="qrCode">
+                        <br></br>
+                    </div>
+    
+                    <div class="barcode">
+                        <label for="barCode">Bar Code:</label>
+                        <input type="text" id="barCode" name="barCode">
+                        <br></br>
+                    </div>
+                </div>
+
+                <label for="thumbnail">Thumbnail Image:</label>
+                <input type="file" id="thumbnail" accept="image/*">
+                <br></br>
+
+                <label for="images">Product Images:</label>
+                <input type="file" id="images" accept="image/*" multiple>
+                <br></br>
+
+                <button type="button" onclick="submitProduct()">Submit Product</button>
+            </form>
+        </div>
+        
+      </main>
+    
+
+    <script>
+         async function uploadImages(files) {
+            try {
+                const formData = new FormData();
+
+                let totalSize = 0;
+                for (const file of files) {
+                    totalSize += file.size;
+                    formData.append('images', file);
+                }
+
+                // Check total size on the frontend before sending to the server
+                if (totalSize > 5 * 1024 * 1024) {  // 5 MB limit
+                    alert('Total file size exceeds 5 MB. Please choose smaller images.');
+                    return null;
+                }
+
+                // Send the files to the backend
+                const response = await fetch('https://gd-store.ge/api/Upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Image upload failed.');
+                }
+
+                const data = await response.json();
+                return data.paths;  // Return the array of uploaded image paths
+
+            } catch (error) {
+                console.error('Image upload error:', error.message);
+                alert(`Image upload failed: ${error.message}`);
+                return null;
+            }
+        }
+
+        async function submitProduct() {
+            try {
+                // Collect product data from the form
+                const title = document.getElementById('title').value;
+                const description = document.getElementById('description').value;
+                const price = parseFloat(document.getElementById("price").value); // Convert to number
+                const categoryId = parseInt(document.getElementById("categoryId").value, 10); // Convert to integer
+                const stock = parseInt(document.getElementById("stock").value, 10); // Convert to integer
+                const weight = parseFloat(document.getElementById("weight").value); // Convert to float
+                const height = parseFloat(document.getElementById("height").value); // Convert to float
+                const width = parseFloat(document.getElementById("width").value); // Convert to float
+                const depth = parseFloat(document.getElementById("depth").value);
+                const qrCode = document.getElementById('qrCode').value;
+                const barCode = document.getElementById('barCode').value;
+                const thumbnail = document.getElementById('thumbnail');
+
+
+                // Handle file uploads
+                const imageInputs = document.getElementById('images');
+                
+                // Check if images are provided
+                if (imageInputs.files.length === 0) {
+                    alert('Please upload at least one image.');
+                    return;
+                }
+                if (thumbnail.files.length === 0) {
+                    alert('Please upload at least one image.');
+                    return;
+                }
+
+                // Upload images and get paths
+                const imagePaths = await uploadImages(imageInputs.files);
+                if (!imagePaths) return;
+                const thumbnailPath = await uploadImages(thumbnail.files);
+                if(!thumbnailPath) return;
+
+                // Construct the product object
+                const productData = {
+                    title: title,
+                    description: description,
+                    price: price,
+                    categoryId: categoryId,
+                    stock: stock,
+                    weight: weight,
+                    height: height,
+                    width: width,
+                    depth: depth,
+                    qrCode: qrCode,
+                    barCode: barCode,
+                    images: imagePaths,
+                    thumbnail: thumbnailPath[0]
+                };
+
+               console.log(JSON.stringify(productData));
+
+                // Send product data to the backend
+                const response = await fetch('https://gd-store.ge/api/Product', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Product submission failed.');
+                }
+
+                alert('Product submitted successfully!');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+        // Auto-adjust height based on content
+        const textarea = document.getElementById('description');
+
+        // Listen for input event
+        textarea.addEventListener('input', autoResize);
+
+        function autoResize() {
+            // Reset height to recalculate
+            this.style.height = 'auto';
+            // Set height based on scrollHeight
+            this.style.height = this.scrollHeight + 'px';
+        }
+
+        // Trigger the auto-resize function on page load if there's pre-filled content
+        document.addEventListener('DOMContentLoaded', function () {
+            autoResize.call(textarea);
+        });
+    </script>
+</body>
+</html>

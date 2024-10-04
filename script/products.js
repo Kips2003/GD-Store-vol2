@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         data.images.forEach(element => {
             const imgTag = document.createElement('img');
-            imgTag.src = element;
+            imgTag.src = `https://gd-store.ge/${element}`;
             imgTag.width = `${sliderDiv.clientWidth}`;
             imgTag.height = `${sliderDiv.clientHeight}`;
 

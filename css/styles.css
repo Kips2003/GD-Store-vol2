@@ -48,14 +48,7 @@
   position: relative; /* Allows absolute positioning of the icon */
 }
 
-.icon {
-  position: absolute;
-  left: 10px; /* Adjust as necessary */
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none; /* Prevents clicks on the icon */
-  color: #aaa; /* Optional: Change color for visibility */
-}
+
 
 input.empty {
   font-family: Arial, sans-serif; /* Set default font for input */
