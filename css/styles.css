@@ -136,7 +136,7 @@ main {
 .sec-one {
   display: flex;
   justify-content: center;
-  background-image: url("images/featured_image_-_living_room_furniture_layout_1600x@2x.webp");
+  background-image: url("../images/featured_image_-_living_room_furniture_layout_1600x@2x.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -262,7 +262,7 @@ img {
   width: 50%;
 }
 .sec-two-photo {
-  background-image: url("images/1_HWTn9_OU8yJbA__QrNfKYQ.png");
+  background-image: url("../images/1_HWTn9_OU8yJbA__QrNfKYQ.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
