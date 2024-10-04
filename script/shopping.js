@@ -61,7 +61,7 @@ function displayViewedProducts(){
 
 let productDiv = document.getElementById("products");
 
-function displayProducts(products, maxProduct, page = "1", title = ""){
+function displayProducts(products, maxProduct, page, title = ""){
   console.log(products);
   page = parseInt(page);
   if(products.length > 10){
@@ -69,7 +69,7 @@ function displayProducts(products, maxProduct, page = "1", title = ""){
     for(let i = -1; i < pageCount; i++){
       document.querySelector('.pagination-wraper').innerHTML+= `<a href="shopping.html?limit=10&title=${title}&page=${i+2}">${i+2}</a>`;
     }
-  }
+  }               
 
   for (let i = 0; i < parseInt(maxProduct); i++) {
     let product = products[i+((page-1)*10)];
@@ -92,11 +92,12 @@ function displayProducts(products, maxProduct, page = "1", title = ""){
               </p>
           </div>
       </div>`;
+      
   }
   displayViewedProducts();
 
   for (let i = 0; i < products.length; i++) {
-    let product = products[i];
+    let product = products[i+((page-1)*10)];
 
     document.getElementById(`product${product.id}`)
       .addEventListener("click", () => {

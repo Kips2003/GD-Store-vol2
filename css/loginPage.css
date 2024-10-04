@@ -45,18 +45,6 @@
   z-index: 1000;
 }
 
-/* adding css for login page */
-
-/* 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-} */
 body {
   font-family: "Inter";
 }
