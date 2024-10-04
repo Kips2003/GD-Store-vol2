@@ -158,9 +158,9 @@ document.getElementById('iconified').addEventListener('keydown', function(event)
 
       // Redirect to shopping.html with the query
       if (title) {
-          window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
+          window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}&page=1`;
       } else {
-          window.location.href = 'shopping.html?limit=10'; // Default to show all products
+          window.location.href = 'shopping.html?limit=10&title=&page=1'; // Default to show all products
       }
   }
 });
