@@ -73,7 +73,7 @@ export function checkForUser(){
       const user = jwt_decode(userToken);
 
       changeIfUserExists.innerHTML = 
-        `<div>
+        `<div class="cart">
         <i class="fa-solid fa-cart-shopping"></i>
         </div>
         <div class="user" id="user" style="border-radius: 50%; width: 20px; height: 20px; border-color: #2c1b13; border-width: 3px; border-style: solid;">

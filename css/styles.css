@@ -589,6 +589,10 @@ select {
   align-items: center;
 }
 
+.cart{
+  width: 20px;
+  height: 20px;
+}
 /* adding responsive to the code */
 
 /* media sectiona */
