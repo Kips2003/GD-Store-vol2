@@ -46,9 +46,22 @@
 }
 .search {
   position: relative; /* Allows absolute positioning of the icon */
+  order: 2;
+}.search-placeholder{
+  order: 2;
 }
 
-
+.user{
+  position: relative;
+  z-index: 100;
+}
+.profile-picture{
+  position: absolute;
+}
+.fa-cart-shopping{
+  color: #2c1b13;
+  font-size: 25px;
+}
 
 input.empty {
   font-family: Arial, sans-serif; /* Set default font for input */
@@ -123,6 +136,36 @@ input.empty::placeholder {
 .fa-magnifying-glass.active{
   display: none;
 }
+.header-icons {
+  display: flex; /* Use flexbox to arrange items horizontally */
+  align-items: center; /* Center vertically */
+  column-gap: 25px; /* Space between cart and user */
+  order: 2;
+}
+
+.cart {
+  font-size: 24px; /* Adjust size of the cart icon */
+  color: #333; /* Color for the cart icon */
+  cursor: pointer; /* Pointer cursor for clickable items */
+}
+
+.user {
+  width: 50px; /* Set fixed width */
+  height: 50px; /* Set fixed height */
+  border-radius: 50%; /* Make it circular */
+  border: 3px solid #2c1b13; /* Border styling */
+  overflow: hidden; /* Hide overflow */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.user img {
+  width: 100%; /* Image takes full width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Ensure the image is circular */
+}
+
 
 
 main {
@@ -194,6 +237,46 @@ img {
   letter-spacing: 2px;
 }
 
+.dropdown-menu {
+  display: none; /* Hide the dropdown menu by default */
+  position: absolute; /* Position it relative to the user icon */
+  top: 100%; /* Position it directly below the user icon */
+  left: 92%; /* Center align it */
+  transform: translate(-65px, 20px); /* Adjust to center it */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  z-index: 1000; /* Keep it above other elements */
+  width: 100px;
+}
+
+
+.dropdown-menu ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  z-index: 1000; /* Keep it above other elements */
+
+}
+
+.dropdown-menu li {
+  padding: 10px; /* Spacing for each option */
+  z-index: 1000; /* Keep it above other elements */
+  cursor: pointer;
+}
+
+.dropdown-menu li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Text color */
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+  z-index: 1000; /* Keep it above other elements */
+
+}
+
 /* section two */
 /* section two is for about us information */
 /* it will have whole information about the company and website */
@@ -230,8 +313,10 @@ img {
   -webkit-text-decoration-color: rgb(255, 145, 0);
   text-decoration-color: rgb(255, 145, 0);
   text-underline-offset: 40px;
-  transform: translateX(-600px); /* Start off-screen */
+  opacity: 0;
+  transform: scale(0.5);
 }
+
 .sec-two-wraper p {
   font-family: "Inter";
   font-size: 20px;
@@ -240,19 +325,20 @@ img {
   margin-top: 100px;
   line-height: 35px;
   width: 80%;
-  transform: translateX(-600px); /* Start off-screen */
+  opacity: 0;
+  transform: scale(0.5);
 }
 .sec-two-wraper.animate p {
-  transform: translateX(0); /* Slide in */
+  transform: scale(1); /* Slide in */
   opacity: 1;
-  transition: transform 1s ease-in, opacity 1s ease-out; /* Smooth animation */
-  transition-delay: 0.5s;
+  transition: transform 0.5s ease-in, opacity 0.5s ease-out;
+  transition-delay: 0s;
 }
 
 .sec-two-wraper.animate h2 {
-  transform: translateX(0); /* Slide in */
+  transform: scale(1); /* Slide in */
   opacity: 1;
-  transition: transform 1s ease-in, opacity 1s ease-out;
+  transition: transform 0.5s ease-in, opacity 0.5s ease-out;
   transition-delay: 0s;
 }
 
@@ -270,14 +356,15 @@ img {
   width: 45%;
   height: 100%;
   border-radius: 20px;
-  transform: translate(700px);
+  opacity: 0;
+  transform: scale(0.5);
 }
 
 .sec-two-wraper.animate .sec-two-photo {
-  transform: translateX(0); /* Slide in */
+  transform: scale(1); /* Slide in */
   opacity: 1;
-  transition: transform 1s ease-in, opacity 1s ease-out; /* Smooth animation */
-  transition-delay: 0.5s;
+  transition: transform 0.5s ease-in, opacity 0.5s ease-out;
+  transition-delay: 0s;
 }
 
 .filters {
@@ -392,7 +479,8 @@ select {
   -ms-flex-direction: column;
   flex-direction: column;
 
-  transform: translateX(750px);
+  opacity: 0;
+  transform: scale(0.5);
 }
 .contact-info h2 {
   font-family: "Inter";
@@ -453,23 +541,24 @@ select {
 .map {
   width: 40%;
   height: 30vw;
-  transform: translateX(-750px);
+  opacity: 0;
+  transform: scale(0.5);
 }
 .map iframe {
   width: 100%;
   height: 100%;
 }
 .sec-three-wraper.animate .map {
-  transform: translateX(0); /* Slide in */
+  transform: scale(1); /* Slide in */
   opacity: 1;
-  transition: transform 1s ease-in, opacity 1s ease-out;
+  transition: transform 0.5s ease-in, opacity 0.5s ease-out;
   transition-delay: 0s;
 }
 
 .sec-three-wraper.animate .contact-info {
-  transform: translateX(0); /* Slide in */
+  transform: scale(1); /* Slide in */
   opacity: 1;
-  transition: transform 1s ease-in, opacity 1s ease-out;
+  transition: transform 0.5s ease-in, opacity 0.5s ease-out;
   transition-delay: 0s;
 }
 
@@ -686,21 +775,22 @@ select {
     margin-top: 100px;
     line-height: 35px;
     width: 80%;
-    transform: translateX(-800px); /* Start off-screen */
+    opacity: 0;
+    transform: scale(0.5); /* Start off-screen */
   }
 
   .sec-two-wraper.animate h2 {
-    transform: translateX(0); /* Slide in */
+    transform: scale(1); /* Slide in */
     opacity: 1;
-    transition: transform 1s ease-in, opacity 1s ease-out;
+    transition: transform 0.5s ease-in, opacity 0.5s ease-out;
     transition-delay: 0s;
   }
 
   /* Animate the paragraph second */
   .sec-two-wraper.animate p {
-    transform: translateX(0); /* Slide in */
+    transform: scale(1); /* Slide in */
     opacity: 1;
-    transition: transform 1s ease-in, opacity 1s ease-out; /* Smooth animation */
+    transition: transform 0.5s ease-in, opacity 0.5s ease-out;
     transition-delay: 0s;
   }
   .sec-two-photo {
@@ -712,14 +802,15 @@ select {
     width: 45%;
     height: 100%;
     border-radius: 20px;
-    transform: translate(700px);
-  }
+    opacity: 0;
+    transform: scale(0.5);
+    }
 
   .sec-two-wraper.animate .sec-two-photo {
-    transform: translateX(0); /* Slide in */
+    transform: scale(1); /* Slide in */
     opacity: 1;
-    transition: transform 1s ease-in, opacity 1s ease-out; /* Smooth animation */
-    transition-delay: 0.5s;
+    transition: transform 0.5s ease-in, opacity 0.5s ease-out;
+    transition-delay: 0s;
   }
 
   .sec-two-title {

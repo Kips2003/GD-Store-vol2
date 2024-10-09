@@ -237,6 +237,9 @@ input.empty {
   width: 100%;
   z-index: 1000;
 }
+.search-placeholder{
+  order: 2;
+}
 
 .sec-one {
   display: flex;

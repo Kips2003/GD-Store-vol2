@@ -1,9 +1,8 @@
-import { updateSearchDisplay } from "./module.js";
+
 import { checkForUser } from "./module.js";
+import { updateSearchDisplay } from "./module.js";
 
-// Run the function on page load
 updateSearchDisplay();
-
 checkForUser();
 // Add the event listener for window resize to update the search bar display dynamically
 window.addEventListener("resize", updateSearchDisplay);

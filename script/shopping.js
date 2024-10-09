@@ -1,6 +1,8 @@
+import { checkForUser } from "./module.js";
 import { updateSearchDisplay } from "./module.js";
 
 updateSearchDisplay();
+checkForUser();
 window.addEventListener("resize", updateSearchDisplay);
 
 const loginButton = document.querySelector(".log-in");
@@ -25,6 +27,8 @@ function fetchAllProducts(limit, page){
 }
 
 function fetchProductsByQuery(title, limit, page){
+  console.log(title);
+  console.log(typeof(title));
   fetch(`https://gd-store.ge/api/Product/WithTitle/${title}`)
   .then(response => response.json())
   .then(data => displayProducts(data, limit,page, title))

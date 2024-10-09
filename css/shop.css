@@ -99,10 +99,90 @@ input.empty {
   margin-right: 5px;
   color: #2c1b13;
 }
+.dropdown-menu {
+  display: none; /* Hide the dropdown menu by default */
+  position: absolute; /* Position it relative to the user icon */
+  top: 100%; /* Position it directly below the user icon */
+  left: 92%; /* Center align it */
+  transform: translateX(-50%); /* Adjust to center it */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  z-index: 1000; /* Keep it above other elements */
+  width: 100px;
+}
+
+
+.dropdown-menu ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.dropdown-menu li {
+  padding: 10px; /* Spacing for each option */
+}
+
+.dropdown-menu li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Text color */
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
+
 
 .search {
   position: relative; /* Allows absolute positioning of the icon */
 }
+.search-placeholder{
+  order: 2;
+}
+.search-main{
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  padding: 20px 20px 0 20px;
+  transform: translateY(0px);
+  z-index: 12;
+}
+.search-main > input {
+  width: 100%;
+  z-index: 1000;
+}
+.header-icons {
+  display: flex; /* Use flexbox to arrange items horizontally */
+  align-items: center; /* Center vertically */
+  column-gap: 25px; /* Space between cart and user */
+  order: 2;
+}
+
+.cart {
+  font-size: 24px; /* Adjust size of the cart icon */
+  color: #333; /* Color for the cart icon */
+  cursor: pointer; /* Pointer cursor for clickable items */
+}
+
+.user {
+  width: 50px; /* Set fixed width */
+  height: 50px; /* Set fixed height */
+  border-radius: 50%; /* Make it circular */
+  border: 3px solid #2c1b13; /* Border styling */
+  overflow: hidden; /* Hide overflow */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.user img {
+  width: 100%; /* Image takes full width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Ensure the image is circular */
+}
+
+
 
 .icon {
   position: absolute;

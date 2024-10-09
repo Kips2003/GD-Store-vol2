@@ -1,7 +1,9 @@
 
 import { updateSearchDisplay } from "./module.js";
+import { checkForUser } from "./module.js";
 
 updateSearchDisplay();
+checkForUser();
 window.addEventListener("resize", updateSearchDisplay);
 
 const loginButton = document.querySelector(".log-in");

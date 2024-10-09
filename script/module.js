@@ -1,60 +1,75 @@
 // Function to check the width and update the display property for search
+let isMobileEventListenerAdded = false; // Flag to keep track of the event listener state
 
+// Function to update the search bar display based on screen size
 export function updateSearchDisplay() {
-
   const search = document.querySelector(".search");
+  const searchPlaceholder = document.querySelector(".search-placeholder");
   const documentWidth = document.documentElement.clientWidth;
 
   if (documentWidth < 720) {
-    // Move the search bar into a different container on small screens
+    // Move the search bar into the sign-log container on small screens
     document.querySelector(".sign-log").appendChild(search);
     search.style.order = "0";
-    search.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i>`;
+    search.innerHTML = `<i style="order: 1;" class="fa-solid fa-magnifying-glass"></i>`; // Change to magnifying glass icon
     search.style.cursor = "pointer";
 
-    // Add click event to display the search input
-    search.addEventListener("click", () => {
-      let searchSection = document.querySelector(".search-main");
-      if (searchSection) {
-        // If search section exists, toggle its visibility
-        if (
-          searchSection.style.display ===
-          "none" /*|| searchSection.style.display === ''*/
-        ) {
-          searchSection.style.display = "block"; // Make sure it's visible
-        } else {
-          searchSection.style.display = "none"; // Hide it again on subsequent clicks
-        }
-      } else {
-        // If search section doesn't exist, create and append it at the top of the main element
-        const searchMain = document.createElement("section");
-        searchMain.classList.add("search-main");
-        searchMain.innerHTML = `
-                    <input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   Search"/>
-                `;
-        searchMain.style.padding = "10px"; // Add some padding to make it noticeable
-        searchMain.style.backgroundColor = "#fff8f2"; // Ensure background is visible
-        searchMain.style.position = "fixed"; // So it shows in flow of the page
-        searchMain.style.zIndex = "12"; // Keep it above other content
-
-        // Insert the searchMain element as the first child of the main element
-        document
-          .querySelector("main")
-          .insertBefore(searchMain, document.querySelector("main").firstChild);
-      }
-    });
+    // Add click event to display the search input if not already added
+    if (!isMobileEventListenerAdded) {
+      search.addEventListener("click", handleMobileSearchClick);
+      isMobileEventListenerAdded = true; // Set the flag to true
+    }
   } else {
-    // Move the search bar back and restore its appearance on larger screens
-    document.querySelector(".wraper").appendChild(search);
-    search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002;   S e a r c h"/>`;
+    // Move the search bar back to its original position on larger screens
+    searchPlaceholder.appendChild(search);
+    search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002; S e a r c h"/>`;
     search.style.order = "2";
+    search.style.cursor = "text"; // Change back to default cursor for input
+
+    // Remove the mobile click event listener when switching back to larger screens
+    if (isMobileEventListenerAdded) {
+      search.removeEventListener("click", handleMobileSearchClick);
+      isMobileEventListenerAdded = false; // Set the flag to false
+    }
+
+    // Hide any previously created search sections for small screens
     let searchSection = document.querySelector(".search-main");
-    //searchSection.style.display = "none";
     if (searchSection) {
-      searchSection.style.display = "none"; // Hide the extra search section on larger screens
+      searchSection.style.display = "none";
     }
   }
 }
+
+// Function to handle the mobile search bar click event
+function handleMobileSearchClick() {
+  let searchSection = document.querySelector(".search-main");
+  if (searchSection) {
+    // If search section exists, toggle its visibility
+    searchSection.style.display = searchSection.style.display === "none" ? "block" : "none";
+  } else {
+    // If search section doesn't exist, create and append it at the top of the main element
+    const searchMain = document.createElement("section");
+    searchMain.classList.add("search-main");
+    searchMain.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="Search..."/>`;
+    searchMain.style.padding = "10px";
+    searchMain.style.backgroundColor = "#fff8f2";
+    searchMain.style.position = "fixed";
+    searchMain.style.zIndex = "12";
+    document.querySelector("main").insertBefore(searchMain, document.querySelector("main").firstChild);
+  }
+}
+
+// Event Listener for resizing with debounce to optimize performance
+let debounceTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    updateSearchDisplay();
+  }, 300);
+});
+
+// Initial call to set the correct display on page load
+updateSearchDisplay();
   
 
 export function checkForUser(){
@@ -65,24 +80,69 @@ export function checkForUser(){
       if(parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    const userToken = getCookie('AuthToken');
+    const userToken = getCookie('authToken');
 
     const changeIfUserExists = document.querySelector('.sign-log');
     
     if(userToken){
-      const user = jwt_decode(userToken);
+      const decodedUser = jwt_decode(userToken);
 
-      changeIfUserExists.innerHTML = 
-        `<div class="cart">
-        <i class="fa-solid fa-cart-shopping"></i>
-        </div>
-        <div class="user" id="user" style="border-radius: 50%; width: 20px; height: 20px; border-color: #2c1b13; border-width: 3px; border-style: solid;">
-          <img src="${user.profilePicture}" alt="">
+      try{
+        fetch(`https://gd-store.ge/api/Auth/${decodedUser.email}`) // Adjust this API endpoint as per your backend
+        .then(response => response.json())
+        .then(user => {
+          console.log(user);
+        
+        const userProfilePicture = "https://gd-store.ge" + user.profilePicture;
+
+        changeIfUserExists.innerHTML = 
+        `<div class="header-icons">
+            <div style="order: 2;" class="cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div style="order: 2;" class="user" id="user">
+                <img src="${userProfilePicture}" alt="User Profile Picture" />
+                <div class="dropdown-menu" id="dropdownMenu">
+                  <ul>
+                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="settings.html">Settings</a></li>
+                      <li><a style="color: red;" href="logout.html">Log Out</a></li>
+                  </ul>
+              </div>
+            </div>
         </div>`;
+        addEventListenerToAddedUser();
+        })
+      }
+      catch(e){
+        console.log(e);
+      }
+
     }
   })
 }
 
+function addEventListenerToAddedUser(){
+  document.querySelector('.cart').addEventListener('click', () => {
+    window.location.href = "cart.html";
+});
+
+const user = document.getElementById('user');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+user.addEventListener('click', (event) => {
+    // Toggle the dropdown menu visibility
+    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+
+    // Prevent the click event from bubbling up to the document
+    event.stopPropagation();
+});
+
+// Hide dropdown when clicking outside of it
+document.addEventListener('click', () => {
+    dropdownMenu.style.display = 'none';
+});
+}
 
 
 /**
