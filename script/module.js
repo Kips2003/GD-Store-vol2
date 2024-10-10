@@ -86,7 +86,7 @@ export function checkForUser(){
     
     if(userToken){
       const decodedUser = jwt_decode(userToken);
-
+      console.log(decodedUser + "this is decoded");
       try{
         fetch(`https://gd-store.ge/api/Auth/${decodedUser.email}`) // Adjust this API endpoint as per your backend
         .then(response => response.json())
