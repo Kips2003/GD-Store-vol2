@@ -65,14 +65,56 @@
                 <input type="password" id="password" required>
                 <br></br>
 
+                <label for="profilePicture">Profile Image:</label>
+                <input type="file" id="profilePicture" accept="image/*">
+                <br></br>
+
                 <button type="submit">Register</button>
             </div>
         </form>
         
     </main>
     <script>
+
+        async function uploadImages(files) {
+            try {
+                const formData = new FormData();
+
+                let totalSize = 0;
+                for (const file of files) {
+                    totalSize += file.size;
+                    formData.append('images', file);
+                }
+
+                // Check total size on the frontend before sending to the server
+                if (totalSize > 5 * 1024 * 1024) {  // 5 MB limit
+                    alert('Total file size exceeds 5 MB. Please choose smaller images.');
+                    return null;
+                }
+
+                // Send the files to the backend
+                const response = await fetch('https://gd-store.ge/api/Upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Image upload failed.');
+                }
+
+                const data = await response.json();
+                return data.paths;  // Return the array of uploaded image paths
+
+            } catch (error) {
+                console.error('Image upload error:', error.message);
+                alert(`Image upload failed: ${error.message}`);
+                return null;
+            }
+        }
         // Function to save form data to sessionStorage
-        function saveFormData() {
+        async function saveFormData() {
+            
             const formData = {
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
@@ -133,7 +175,17 @@
         // Event listener for the registration form
         document.getElementById('registration-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
+            //adding profile picture
+            const profilePicture = document.getElementById('profilePicture');
+            const profilePicturePath = "";
+            if(profilePicture.files.length === 0){
+                profilePicturePath = "string";
+            }
+            else{
+                profilePicturePath = uploadImages(profilePicture.files);
+                if(!profilePicturePath) return;
+            }
             // Save the form data to sessionStorage
             saveFormData();
 
@@ -145,7 +197,7 @@
                 phoneNumber: document.getElementById('phoneNumber').value,
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                profilePicture : ""
+                profilePicture : profilePicturePath
             };
 
             // Call the registerUser function with the requestData
