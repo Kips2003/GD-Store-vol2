@@ -14,22 +14,23 @@ loginButton.addEventListener("click", () => {
 });
 
 registerButton.addEventListener("click", () => {
-  window.location.href = "registrationPage.html";
+    window.location.href = "registrationPage.html";
 });
-
-document.getElementById('iconified').addEventListener('keydown', function(event) {
-    // Check if the Enter key was pressed
-    if (event.Ekey === "Enter" || event.keyCode === 13) {
-        const title = event.target.value;
-  
-        // Redirect to shopping.html with the query
-        if (title) {
-            window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
-        } else {
-            window.location.href = 'shopping.html?limit=10'; // Default to show all products
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('iconified').addEventListener('keydown', function(event) {
+        // Check if the Enter key was pressed
+        if (event.Ekey === "Enter" || event.keyCode === 13) {
+            const title = event.target.value;
+      
+            // Redirect to shopping.html with the query
+            if (title) {
+                window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
+            } else {
+                window.location.href = 'shopping.html?limit=10'; // Default to show all products
+            }
         }
-    }
-  });
+    });
+})
 
   
 
@@ -51,6 +52,7 @@ let shift = 0;
 const viewFinderSize = -(sliderDiv.clientWidth);
 
 window.addEventListener('DOMContentLoaded', async () => {
+    
 
     try{
         const response =await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
@@ -134,8 +136,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         //now its time for arrow eventlisteners(next and previous)
 
         //prev button
+        const prevButton = document.querySelector('.prev');
 
-        document.querySelector('.prev').addEventListener('click', () => {
+        prevButton.style.transform = `translateX(5px) translateY(-${(sliderDiv.clientHeight)/2}px)`;
+
+        prevButton.addEventListener('click', () => {
             shift += sliderDiv.clientWidth;
 
             if(shift > 0){
@@ -146,8 +151,14 @@ window.addEventListener('DOMContentLoaded', async () => {
             //startAutoSlide();
         })
 
+
         //next button
-        document.querySelector('.next').addEventListener('click', () => {
+
+        const nextButton = document.querySelector('.next');
+
+        nextButton.style.transform = `translateX(${sliderDiv.clientWidth-45}px) translateY(-${(sliderDiv.clientHeight)/2}px)`;
+
+        nextButton.addEventListener('click', () => {
             shift -= sliderDiv.clientWidth;
 
             if(shift <= -(images.length * sliderDiv.clientWidth)){
