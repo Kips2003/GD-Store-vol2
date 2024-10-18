@@ -57,7 +57,7 @@ const shopNowButton = document.querySelector(".shop-now");
 shopNowButton.style.cursor = "pointer";
 
 shopNowButton.addEventListener("click", () => {
-  window.location.href = "shopping.html?limit=10&title=&page=1";
+  window.location.href = "shopping.html?title=&page=1";
 });
 
 // Smooth scroll to section logic when clicking shop links
@@ -101,15 +101,21 @@ registerButton.addEventListener("click", () => {
 
 document.getElementById('iconified').addEventListener('keydown', function(event) {
   // Check if the Enter key was pressed
-  if (event.Ekey === "Enter" || event.keyCode === 13) {
-      const title = event.target.value;
+  if (event.key === "Enter" || event.keyCode === 13) {
+    
+    const title = event.target.value; 
+    let currentParams = new URLSearchParams(window.location.search); 
+    currentParams.set('page', 1);
 
-      // Redirect to shopping.html with the query
-      if (title) {
-          window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}&page=1`;
-      } else {
-          window.location.href = 'shopping.html?limit=10&title=&page=1'; // Default to show all products
-      }
-  }
+    // Redirect to shopping.html with the query
+    if (title) {
+      currentParams.set('title', title);
+      window.location.href = "shopping.html" + '?' +currentParams.toString();
+    } 
+    else {
+        currentParams.delete('title');
+        window.location.href = "shopping.html" + '?' +currentParams.toString(); // Default to show all products
+    }
+}
 });
 

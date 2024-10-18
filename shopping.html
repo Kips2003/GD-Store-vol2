@@ -60,7 +60,7 @@
         <div class="search-placeholder" style="order: 2;"></div>
 
         <div class="search">
-          <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" class="form-control empty" id="iconified" placeholder="Search" />
         </div>
     
@@ -74,13 +74,14 @@
       <section class="filters">
         <div class="wraper-filter">
           <div class="category">
-            <select name="category" id="">
-              <option value="category">Categories</option>
-              <option value="livingRoom">Living Room</option>
-              <option value="bedRoom">Bed Room</option>
-              <option value="kitchen">Kitchen</option>
-              <option value="guestRoom">Guest Room</option>
-              <option value="decoration">Decoration</option>
+            <select name="category" id="category">
+              <option value="0">Categories</option>
+              <option value="2">Living Room</option>
+              <option value="6">Bed Room</option>
+              <option value="1">Kitchen</option>
+              <option value="4">Guest Room</option>
+              <option value="3">Decoration</option>
+              <option value="5">Dining Room</option>
             </select>
           </div>
           <div class="price-filter">
@@ -106,7 +107,11 @@
           </div>
         </div>
       </section>
+      <section class="filtration">
+        <div class="filtration-wraper">
 
+        </div>
+      </section>
       <section class="sec-one">
         <div class="slider">
           <div id="products" class="photos"></div>
