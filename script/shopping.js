@@ -113,7 +113,6 @@ function displayProducts(products, maxProduct, page, title = ""){
               </p>
           </div>
       </div>`;
-      
   }
   displayViewedProducts();
 
@@ -171,3 +170,13 @@ document.getElementById('iconified').addEventListener('keydown', function(event)
 
 
 
+document.getElementById('price').addEventListener('click', ()=>{
+  document.querySelector(".price-window").classList.toggle("hide");
+})
+
+document.getElementById('price-form').addEventListener("submit", () => {
+  const minVal = document.getElementById('min').value;
+  const maxVal = document.getElementById('max').value;
+
+
+})

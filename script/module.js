@@ -98,17 +98,17 @@ export function checkForUser(){
         changeIfUserExists.innerHTML = 
         `<div class="header-icons">
             <div style="order: 2;" class="cart">
-                <i class="fa-solid fa-cart-shopping"></i>
+              <i class="fa-solid fa-cart-shopping"></i>
             </div>
             <div style="order: 2;" class="user" id="user">
-                <img src="${userProfilePicture}" alt="User Profile Picture" />
-                <div class="dropdown-menu" id="dropdownMenu">
-                  <ul>
-                      <li><a href="profile.html">Profile</a></li>
-                      <li><a href="settings.html">Settings</a></li>
-                      <li><a style="color: red;" href="logout.html">Log Out</a></li>
-                  </ul>
-              </div>
+              <img src="${userProfilePicture}" alt="User Profile Picture" />
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <ul>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a style="color: red;" href="logout.html">Log Out</a></li>
+              </ul>
             </div>
         </div>`;
         addEventListenerToAddedUser();
