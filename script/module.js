@@ -2,7 +2,7 @@
 let isMobileEventListenerAdded = false; // Flag to keep track of the event listener state
 
 // Function to update the search bar display based on screen size
-export function updateSearchDisplay() {
+export async function updateSearchDisplay() {
   const search = document.querySelector(".search");
   const searchPlaceholder = document.querySelector(".search-placeholder");
   const documentWidth = document.documentElement.clientWidth;

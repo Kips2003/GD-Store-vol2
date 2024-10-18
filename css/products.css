@@ -285,12 +285,11 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    padding: 80px;
+    padding: 80px 0;
 }
 .sec-one-wraper{
     display: flex;
     justify-content: space-between;
-
     max-width: 1440px;
     width: 90%;
     padding: 20px;
@@ -361,9 +360,57 @@
 
 .right{
   display: flex;
-  justify-content: center;
+  justify-content: right;
+}
+.buy-fake{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
+.cart-buy-button{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+}
+.add-to-cart{
+  border: none;
+  background-color: #f9e3d0;
+  height: 30px;
+  border-radius: 15px;
+  color: #2c1b13;
+  font-family: "Inter";
+  font-weight: 600;
+}
+.buy-count>input{
+  border-radius: 10px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-width: 1px;
+
+}
+.stock-value{
+  margin-bottom: 30px;
+}
+.stop.p{
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+}
+.buy-count p{
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+}
+.buy-now{
+  border: none;
+  background-color: #2c1b13;
+  height: 30px;
+  border-radius: 15px;
+  color: #f9e3d0;
+  font-family: "Inter";
+  font-weight: 600;
+}
 .product-desc-num {
   max-width: 500px;
   margin: 50px auto;
@@ -420,7 +467,7 @@
 .sec-two{
   display: flex;
   justify-content: center;
-  padding: 100px;
+  padding: 100px 0;
 }
 .sec-two-wraper{
   max-width: 1440px;
@@ -495,5 +542,53 @@
   }
   .label, .value {
     padding: 5px 0;
+  }
+}
+@media (max-width: 1125px){
+  .sec-one-wraper{
+    flex-direction: column;
+  }
+  .right-side{
+    max-width: 1440px;
+    width: 90%;
+    justify-content: space-between;
+  }
+  .leftside{
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+  }
+  .photo-slide{
+    width: 700px;
+    height: 525px;
+  }
+  .next{
+    transform: translateX(655px) translateY(-230px);
+  }
+  .top-title h1{
+    text-align: left;
+  }
+  .rating{
+    justify-content: left;
+  }
+  .price-discount{
+    justify-content: left;
+  }
+  .right{
+    width: 30%;
+    display: block;
+  }
+  .right-side>.right{
+    width: 30%;
+  }
+  .left{
+    width: 50%;
+  }
+  .right-side{
+    justify-content: space-between;
+  }
+  .photos{
+    width: 700px;
+    height: 525px;
   }
 }

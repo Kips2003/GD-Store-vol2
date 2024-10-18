@@ -2,9 +2,7 @@
 import { updateSearchDisplay } from "./module.js";
 import { checkForUser } from "./module.js";
 
-updateSearchDisplay();
-checkForUser();
-window.addEventListener("resize", updateSearchDisplay);
+
 
 const loginButton = document.querySelector(".log-in");
 const registerButton = document.querySelector(".sign-in");
@@ -52,15 +50,15 @@ const dotDiv = document.querySelector('.dots');
 let shift = 0;
 const viewFinderSize = -(sliderDiv.clientWidth);
 
-document.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async () => {
 
     try{
-        const response = await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
-        const data = await response.json();
+        const response =await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
+        const data = await  response.json();
 
         console.log(data);
 
-/*
+    /*
         this is the part where all the photos from the api will be brought to front end 
         i mean all of the and also they will be given the width and height which will be declared in css file
     */
@@ -320,3 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(e);
     }
 });
+
+await updateSearchDisplay();
+checkForUser();
+window.addEventListener("resize", updateSearchDisplay);
