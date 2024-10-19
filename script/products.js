@@ -51,12 +51,41 @@ const dotDiv = document.querySelector('.dots');
 let shift = 0;
 const viewFinderSize = -(sliderDiv.clientWidth);
 
-window.addEventListener('DOMContentLoaded', async () => {
-    
+async function fetchProductById(id) {
+    let url = `https://gd-store.ge/api/Product/WithId/${id}`;
 
     try{
-        const response =await fetch(`https://gd-store.ge/api/Product/WithId/${productId}`);
-        const data = await  response.json();
+        const response = await fetch(url);
+
+        if(!response.ok){
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        console.log("API response: ", data);
+
+        // Check if the data contains a valid product array
+
+        // Check for undefined products and filter them out if necessary
+        
+
+
+        return data;
+    }
+    catch(error){
+        console.error(`Fetch error:`, error);
+        return [];
+    }
+}
+
+
+    
+async function displayProductPage() {
+    
+
+
+        const data = await fetchProductById(productId);
 
         console.log(data);
 
@@ -261,41 +290,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         productTitle.innerHTML = `${data.title}`;
 
 
-        //adding star rating and rating number to the page
-    
-            // Calculate the average rating
-       // let reviews = data.Reviews;
-
-
-        // function calculateAverageRating(reviews) {
-        //     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
-        //     return totalRating / reviews.length;
-        // }
-
-        // Function to update star colors
-        // function updateStarRating(averageRating) {
-        //     for (let i = 1; i <= 5; i++) {
-        //         const star = document.getElementById(`star${i}`);
-        //         if (i <= averageRating) {
-        //             star.classList.remove('fa-regular');
-        //             star.classList.add('fa-solid', 'fa-star');
-        //             star.style.color = 'orangered';
-        //         } else {
-        //             star.classList.remove('fa-solid', 'fa-star');
-        //             star.classList.add('fa-regular', 'fa-star');
-        //             star.style.color = '#ccc'; 
-        //         }
-        //     }
-        // }
-
-        // // Calculate and update the stars
-        // const averageRating = calculateAverageRating(reviews);
-        // updateStarRating(averageRating);
-
-        // adding float number of rating
-        // document.querySelector('.rating-count').innerHTML = `<p>${averageRating.toFixed(1)}</p>`;
-
-
 
         // adding price and discount
 
@@ -324,12 +318,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         document.querySelector('.description').innerHTML += `<p>${data.description}</p>`;
  
-    }
-    catch(e){
-        console.log(e);
-    }
-});
+}
+
 
 await updateSearchDisplay();
 checkForUser();
 window.addEventListener("resize", updateSearchDisplay);
+
+displayProductPage();

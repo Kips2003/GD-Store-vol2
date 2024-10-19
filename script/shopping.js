@@ -53,7 +53,7 @@ import { updateSearchDisplay } from "./module.js";
         }
         
         try {
-            const response = await fetch(url)
+            const response = await fetch(url);
             
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
