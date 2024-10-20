@@ -17,7 +17,6 @@ const review = document.getElementById('review');
 
 function animateSectionTransition(sectionHTML){
 
-    
     const start = document.getElementById('start');
     const end = document.getElementById('end');
 
@@ -53,10 +52,11 @@ profile.addEventListener('click', async (event) => {
         return;
     }
     removeActive();
-    animateSectionTransition(await profileHTML());
     event.currentTarget.classList.add('active');
-    await loadUserInfo();
+    animateSectionTransition(await profileHTML());
+    // await loadUserInfo();
 })
+
 address.addEventListener('click', async (event) => {
     if(event.currentTarget.classList.contains('active')){
         return;
@@ -89,50 +89,51 @@ async function addressHTML(){
             </div>`;
 }
 async function profileHTML(){
-    return `<h1>Profile info:</h1>
+    const user = await getUserByEmail();
+    const result = ` <h1>Profile info:</h1>
                 <form id="profile-update">
                     <div class="form-wraper">
                         <div class="name">
                             <div class="first-name">
                                 <label for="firstName">First Name: </label>
                                 <br>
-                                <input type="text" name="firstName" id="firstName">
+                                <input type="text" name="firstName" id="firstName" value='${user.firstName}'>
                             </div>
                             <div class="last-name">
                                 <label for="lastName">Last Name:</label>
                                 <br>
-                                <input type="text" name="lastName" id="lastName">
+                                <input type="text" name="lastName" id="lastName" value='${user.lastName}'>
                             </div>
                         </div>
                         <div class="user-name">
                             <div class="username">
                                 <label for="userName">User Name:</label>
                                 <br>
-                                <input type="text" name="userName" id="userName">
+                                <input type="text" name="userName" id="userName" value='${user.userName}'>
                             </div>
                             <div class="phonenumber">
-                                <label for="phoneNUmber">Phone Number:</label>
+                                <label for="phoneNumber">Phone Number:</label>
                                 <br>
-                                <input type="text" name="phoneNUmber" id="phoneNUmber">
+                                <input type="text" name="phoneNumber" id="phoneNumber" value='${user.phoneNumber}'>
                             </div>
                         </div>
                         <div class="dates">
                             <div class="date-birth">
                                 <label for="dateBirth">Date of Birth: </label>
                                 <br>
-                                <input type="date" name="dateBirth" id="dateBirth">
+                                <input type="date" name="dateBirth" id="dateBirth" value='${extractDate(user.dateOfBirth)}'>
                             </div>
                             <div class="date-create">
                                 <label for="dateCreate">Date of Create: </label>
                                 <br>
-                                <input type="date" name="dateCreate" id="dateCreate">
+                                <input type="date" name="dateCreate" id="dateCreate" value='${extractDate(user.dateOfCreate)}'>
                             </div>
                         </div>
                         <div class="email-pas">
                             <div class="email">
                                 <label for="email">Email:</label>
                                 <br>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="email" id="email" value='${user.email}'>
                             </div>
                             <div class="pas">
                                 <p>Change Password  &#10095;</p>
@@ -141,6 +142,8 @@ async function profileHTML(){
                         <button class="submit-button" type="submit">Save</button>
                     </div>
                 </form>`;
+
+            return result;
 }
 
 async function getUserByEmail(){
@@ -152,7 +155,7 @@ async function getUserByEmail(){
         if(!response.ok){
             throw new Error(`Error: ${response.status}`);
         }
-
+        
         const data = await response.json();
 
         return data;
