@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- adding description, author and e.t.c -->
+    <meta
+      name="description"
+      content="you can buy every furniture in the shop and also customize it too"
+    />
+    <meta
+      name="keywords"
+      content="furniture,livingroom,bedroom,kitchen,decorations,"
+    />
+    <meta name="author" content="Giorgi Kiparoidze" />
+
+    <!-- FB meta tags -->
+    <meta property="og:url" content="https://gd-store.ge" />
+    <meta property="og:type" content="Shopping" />
+    <meta
+      property="og:title"
+      content="When you don't want go out for but furniture"
+    />
+    <meta
+      property="og:description"
+      content="you can buy every furniture in the shop and also customize it too"
+    />
+    <meta
+      property="og:image"
+      content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaovXSi0D3tmfz6enTMVouEEwdf_mDkxyBTw&s"
+    />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <link rel="stylesheet" href="css/logo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <title>GD Store</title>
+  </head>
+  <body>
+    <header class="header">
+        <div class="wraper">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-div">
+                    <span class="icon-logo"
+                        ><span class="path1"></span><span class="path2"></span
+                        ><span class="path3"></span><span class="path4"></span
+                        ><span class="path5"></span><span class="path6"></span
+                        ><span class="path7"></span><span class="path8"></span
+                        ><span class="path9"></span><span class="path10"></span
+                        ><span class="path11"></span><span class="path12"></span
+                        ><span class="path13"></span><span class="path14"></span
+                        ><span class="path15"></span><span class="path16"></span
+                        ><span class="path17"></span><span class="path18"></span
+                    ></span>
+                    </div>
+                </a>
+            </div>
+            <div class="search-placeholder"></div>
+
+            <div class="search">
+                <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" class="form-control empty" id="iconified" placeholder="Search" />
+            </div>
+
+            <div class="sign-log">
+                <div class="log-in"><p>Log In</p></div>
+                <div class="sign-in"><p>Sign Up</p></div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="left-section">
+            <div class="left-sec-wraper">
+                <div class="profile active" id="profile">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <p>Profile</p>
+                </div>
+                <div class="addresses" id="address">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <p>Addresses</p>
+                </div>
+                <div class="products" id="products">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <p>Added Products</p>
+                </div>
+                <div class="order-history" id="order">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <p>Orders</p>
+                </div>
+                <div class="reviews" id="review">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <p>Reviews</p>
+                </div>
+            </div>
+            <div class="log-out">
+                <div class="icon-container">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <p class="logout">Log out</p>
+            </div>
+        </section>
+        <section class="main-content">
+            <div class="main-content-wraper" id="start">
+                <h1>Profile info:</h1>
+                <form id="profile-update">
+                    <div class="form-wraper">
+                        <div class="name">
+                            <div class="first-name">
+                                <label for="firstName">First Name: </label>
+                                <br>
+                                <input type="text" name="firstName" id="firstName">
+                            </div>
+                            <div class="last-name">
+                                <label for="lastName">Last Name:</label>
+                                <br>
+                                <input type="text" name="lastName" id="lastName">
+                            </div>
+                        </div>
+                        <div class="user-name">
+                            <div class="username">
+                                <label for="userName">User Name:</label>
+                                <br>
+                                <input type="text" name="userName" id="userName">
+                            </div>
+                            <div class="phonenumber">
+                                <label for="phoneNumber">Phone Number:</label>
+                                <br>
+                                <input type="text" name="phoneNumber" id="phoneNumber">
+                            </div>
+                        </div>
+                        <div class="dates">
+                            <div class="date-birth">
+                                <label for="dateBirth">Date of Birth: </label>
+                                <br>
+                                <input type="date" name="dateBirth" id="dateBirth">
+                            </div>
+                            <div class="date-create">
+                                <label for="dateCreate">Date of Create: </label>
+                                <br>
+                                <input type="date" name="dateCreate" id="dateCreate">
+                            </div>
+                        </div>
+                        <div class="email-pas">
+                            <div class="email">
+                                <label for="email">Email:</label>
+                                <br>
+                                <input type="text" name="email" id="email">
+                            </div>
+                            <div class="pas">
+                                <p>Change Password  &#10095;</p>
+                            </div>
+                        </div>
+                        <button class="submit-button" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="main-content-wraper two" id="end">
+                
+            </div>
+        </section>
+    </main>
+
+
+    <script type="module" src="script/module.js"></script>
+    <script type="module" src="script/profile.js"></script>
+</body>
+  </html>

@@ -105,7 +105,7 @@ export function checkForUser(){
             </div>
             <div class="dropdown-menu" id="dropdownMenu">
               <ul>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="profile.html?email=${user.email}">Profile</a></li>
                 <li><a href="settings.html">Settings</a></li>
                 <li><a style="color: red;" href="logout.html">Log Out</a></li>
               </ul>
@@ -121,6 +121,7 @@ export function checkForUser(){
     }
   })
 }
+
 
 function addEventListenerToAddedUser(){
   document.querySelector('.cart').addEventListener('click', () => {
