@@ -594,6 +594,19 @@
   }
 }
 
+@media (max-width: 916px) {
+  .sec-two-wraper{
+    flex-direction: column;
+    row-gap: 50px;
+  }
+  .description{
+    width: 100%;
+  }
+  .reviews{
+    width: 100%;
+  }
+}
+
 @media (max-width: 780px){
   .photo-slide{
     width: 75vw;
@@ -605,5 +618,34 @@
   }
   .next{
     /* transform: translateX() translateY(-570%) */
+  }
+}
+
+@media (max-width: 600px) {
+    .right-side{
+      flex-direction: column;
+    }
+    .left{
+      width: 100%;
+    }
+    .right{
+      width: 100%;
+    }
+    .right-side>.left{
+      width: 100%;
+    }
+    .right-side>.right{
+      width: 100%;
+    }
+}
+
+@media (max-width: 500px){
+  .photo-slide{
+    width: 95vw;
+    height: 71.25vw;
+  }
+  .photos{
+    width: 95vw;
+    height: 71.25vw;
   }
 }
