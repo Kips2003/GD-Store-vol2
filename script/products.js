@@ -1,7 +1,7 @@
 
 import { updateSearchDisplay } from "./module.js";
 import { checkForUser } from "./module.js";
-
+import { getUserFromToken } from "./module.js";
 
 
 const loginButton = document.querySelector(".log-in");
@@ -326,3 +326,66 @@ checkForUser();
 window.addEventListener("resize", updateSearchDisplay);
 
 displayProductPage();
+
+async function GetQuantityValue() {
+    const quantity = document.getElementById('quantity').value;
+
+    // Check if the quantity is a valid number and greater than 0
+    if (quantity === '' || isNaN(quantity) || parseInt(quantity) <= 0) {
+        return null;
+    }
+
+    return quantity;
+}
+
+async function addToCart() {
+    let userDecode = await getUserFromToken();
+    console.log(userDecode);
+
+    const quantity = await GetQuantityValue();
+    console.log(quantity);
+
+    // Check if quantity is valid
+    if (quantity === null) {
+        alert('Need to enter a valid quantity greater than 0');
+        return;
+    }
+
+    const cartItems = {
+        productId: parseInt(productId),
+        quantity: parseInt(quantity)
+    }
+
+    const addToCartRequest = {
+        userId: userDecode.sub,
+        cartItems: [cartItems]
+    }
+
+    console.log(JSON.stringify(addToCartRequest));
+
+    try {
+        const response = await fetch('https://gd-store.ge/api/Cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(addToCartRequest)
+        });
+
+        if (!response.ok) {
+            throw new Error('Adding to cart failed');
+        }
+
+    }
+    catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
+}
+
+const addCartButton = document.getElementById('addCart');
+
+addCartButton.style.cursor = 'pointer';
+addCartButton.addEventListener('click',  async () => {
+    await addToCart();    
+})

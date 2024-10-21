@@ -71,15 +71,15 @@ window.addEventListener("resize", () => {
 // Initial call to set the correct display on page load
 updateSearchDisplay();
   
+function getCookie(name){
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if(parts.length === 2) return parts.pop().split(';').shift();
+}
+
 
 export function checkForUser(){
   window.addEventListener("DOMContentLoaded", () => {
-    function getCookie(name){
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if(parts.length === 2) return parts.pop().split(';').shift();
-    }
-
     const userToken = getCookie('authToken');
 
     const changeIfUserExists = document.querySelector('.sign-log');
@@ -158,4 +158,17 @@ document.addEventListener('click', () => {
 
 export function deleteCookie(name) {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+export async function getUserFromToken(){
+  const userToken = getCookie('authToken');
+
+  if(!userToken){
+    alert('Need to Log In');
+    return;
+  }
+
+  const decodedUser = jwt_decode(userToken);
+
+  return  decodedUser;
 }
