@@ -185,9 +185,73 @@
             </div>
         </section>
     </main>
+    <div id="address-add-form"></div>
 
 
     <script type="module" src="script/module.js"></script>
     <script type="module" src="script/profile.js"></script>
+    <script>
+        function showAddressForm(){
+             // Create the form HTML
+            const addressFormHTML = `
+                <div class="address-form-overlay">
+                    <div class="address-form-container">
+                        <h2>Add a New Address</h2>
+                        <form id="newAddressForm">
+                            <label for="street">Street:</label>
+                            <input type="text" id="street" name="street" required>
+                            
+                            <label for="city">City:</label>
+                            <input type="text" id="city" name="city" required>
+
+                            <label for="zip">ZIP Code:</label>
+                            <input type="text" id="zip" name="zip" required>
+
+                            <button type="submit">Save Address</button>
+                        </form>
+                        <button id="closeForm" class="close-btn">X</button>
+                    </div>
+                </div>
+            `;
+
+            // Append the form to the body
+            const formContainer = document.getElementById('address-add-form');
+            formContainer.innerHTML = addressFormHTML;
+
+            // Apply the blur effect to the background
+            document.body.style.filter = "blur(5px)";
+            document.body.style.pointerEvents = "none";
+
+            // Allow interaction with the form
+            const addressFormOverlay = document.querySelector('.address-form-overlay');
+            addressFormOverlay.style.pointerEvents = "auto";
+
+            // Add event listener to close the form when clicking outside the form container
+            document.querySelector('.address-form-overlay').addEventListener('click', (e) => {
+                if (e.target.classList.contains('address-form-overlay')) {
+                    closeAddressForm();
+                }
+            });
+
+            // Add event listener for the close button
+            document.getElementById('closeForm').addEventListener('click', closeAddressForm);
+
+            // Re-enable pointer events when interacting with the form
+            const addressForm = document.querySelector('.address-form-container');
+            addressForm.addEventListener('click', (e) => {
+                e.stopPropagation();  // Prevent closing when clicking inside the form
+            });
+
+            // Reset body interaction and form cleanup when closed
+            function closeAddressForm() {
+                document.body.style.filter = "none";
+                document.body.style.pointerEvents = "auto";
+                formContainer.innerHTML = "";  // Remove the form from the DOM
+            }
+        }
+
+    </script>
 </body>
-  </html>
+
+
+</html>

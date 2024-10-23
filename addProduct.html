@@ -208,6 +208,11 @@
             justify-content: space-between;
             width: 100%;
         }
+        .thumbnail{
+            border: solid;
+            border-width: 2px;
+            border-color: orangered;
+        }
     </style>
 </head>
 <body>
@@ -320,14 +325,12 @@
                     </div>
                 </div>
 
-                <label for="thumbnail">Thumbnail Image:</label>
-                <input type="file" id="thumbnail" accept="image/*">
-                <br></br>
+                <div id="imagePreview" style="display: flex; gap: 10px;height: auto; flex-wrap: wrap; width: 100%;"></div>
 
                 <label for="images">Product Images:</label>
-                <input type="file" id="images" accept="image/*" multiple>
+                <input type="file" id="images" accept="image/*" multiple onchange="previewImage()">
                 <br></br>
-
+                
                 <button type="button" onclick="submitProduct()">Submit Product</button>
             </form>
         </div>
@@ -393,10 +396,12 @@
                 const depth = parseFloat(document.getElementById("depth").value);
                 const qrCode = document.getElementById('qrCode').value;
                 const barCode = document.getElementById('barCode').value;
-                const thumbnail = document.getElementById('thumbnail');
+
                 const userToken = getCookie('authToken');
                 const decodedUser = jwt_decode(userToken);
+
                 let UserId ;
+
                 fetch(`https://gd-store.ge/api/Auth/${decodedUser.email}`) // Adjust this API endpoint as per your backend
                 .then(response => response.json())
                 .then(user => {
@@ -405,23 +410,33 @@
                     
 
                 // Handle file uploads
-                const imageInputs = document.getElementById('images');
-                
+                 const imageInputs = document.getElementById('images');
+
                 // Check if images are provided
                 if (imageInputs.files.length === 0) {
                     alert('Please upload at least one image.');
                     return;
                 }
-                if (thumbnail.files.length === 0) {
-                    alert('Please upload at least one image.');
+
+                // Find the thumbnail image by checking the class 'thumbnail'
+                const thumbnailElement = document.querySelector('.thumbnail');
+                if (!thumbnailElement) {
+                    alert('Please select a thumbnail image.');
                     return;
                 }
 
+                // Extract the file index from the thumbnail element's ID
+                const thumbnailIndex = parseInt(thumbnailElement.id.replace('img', ''), 10);
+                const thumbnailFile = imageInputs.files[thumbnailIndex - 1]; // Adjust index (0-based)
+
                 // Upload images and get paths
-                const imagePaths = await uploadImages(imageInputs.files);
+                const imagePaths = await uploadImages(imageInputs.files); // Assumes this is a function to handle uploads
                 if (!imagePaths) return;
-                const thumbnailPath = await uploadImages(thumbnail.files);
-                if(!thumbnailPath) return;
+
+                // Upload thumbnail image separately
+                const thumbnailPath = await uploadImages([thumbnailFile]);
+                if (!thumbnailPath) return;
+
 
                 // Construct the product object
                 const productData = {
@@ -482,7 +497,65 @@
         });
 
         !function(e){"function"==typeof define&&define.amd?define(e):e()}((function(){"use strict";function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var n="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(n){var t=String(n).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var r,o,i=0,a=0,d="";o=t.charAt(a++);~o&&(r=i%4?64*r+o:o,i++%4)?d+=String.fromCharCode(255&r>>(-2*i&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return d};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(n(e).replace(/(.)/g,(function(e,n){var t=n.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return n(t)}}function r(e){this.message=e}function o(e,n){if("string"!=typeof e)throw new r("Invalid token specified");var o=!0===(n=n||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new r("Invalid token specified: "+e.message)}}r.prototype=new Error,r.prototype.name="InvalidTokenError",window&&("function"==typeof window.define&&window.define.amd?window.define("jwt_decode",(function(){return o})):window&&(window.jwt_decode=o))}));
+        
 
+        function previewImage() {
+            const imagePreview = document.getElementById('imagePreview');
+            const files = document.getElementById('images').files;
+
+            // Clear previous images
+            imagePreview.innerHTML = '';
+
+            // Loop through selected files and create an image preview for each
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.setAttribute('id', `img${i+1}`);
+                    img.src = e.target.result;
+                    img.style.height = '100px'; // Adjust the height as needed
+                    img.style.width = 'auto'; // Keep aspect ratio
+                    img.style.flexWrap = 'wrap';
+                    imagePreview.appendChild(img);
+                    if(i === 0){
+                        img.classList.add('thumbnail');
+                    }
+
+                    img.style.cursor = 'pointer';
+                    img.addEventListener('click', (e) => {
+                        const currentThumbnail = getThumbnail();
+                        document.getElementById(currentThumbnail).classList.remove('thumbnail');
+
+                        e.currentTarget.classList.add('thumbnail');
+                    });
+                }
+                reader.readAsDataURL(file); // Read the image file as a data URL
+            }
+        }
+
+        function getThumbnail(){
+            const imagePreview = document.getElementById('imagePreview');
+
+
+            for(let i = 0; i < imagePreview.children.length; i++){
+                if(imagePreview.children[i].classList.contains('thumbnail')){
+                    return imagePreview.children[i].getAttribute('id');
+                }
+            }
+        }
+
+        function giveEventListenersToImage(id){
+            document.getElementById(id).style.cursor = 'pointer';
+            document.getElementById(id).addEventListener('click', (e) => {
+                const currentThumbnail = getThumbnail();
+                currentThumbnail.classList.remove('thumbnail');
+
+                e.currentTarget.classList.add('thumbnail');
+            })
+        }
     </script>
 </body>
 </html>

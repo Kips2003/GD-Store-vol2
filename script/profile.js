@@ -64,8 +64,29 @@ address.addEventListener('click', async (event) => {
     removeActive();
     event.currentTarget.classList.add('active');
     animateSectionTransition(await addressHTML());
+    await loadEventListenerForAddress();
 })
 
+async function loadEventListenerForAddress() {
+    const addAddressBtn = document.getElementById('addAddress');
+    
+    // Ensure the element exists before attaching the event listener
+    if (addAddressBtn) {
+        addAddressBtn.addEventListener('click', async () => {
+            await showAddressForm();
+        });
+        addAddressBtn.style.cursor = "pointer";
+    } else {
+        console.error('Element with id "addAddress" not found.');
+    }
+}
+
+export function showAddressForm(){
+    const body = document.querySelector('body');
+
+    body.style.filter = "blur(5px)";
+    body.style.pointerEvents = "none";
+}
 
 function ordersHTML(){
 
@@ -81,8 +102,8 @@ async function addressHTML(){
             <div class="current-addresses" id="currentAddresses">
                 ${await loadAddresses()}
             </div>
-            <div class="add-address">
-                <div>
+            <div class="add-address" style="cursor: pointer" onclick=showAddressForm()>
+                <div id="addAddress">
                     <p>Add Address</p>
                     <i class="fa-solid fa-circle-plus fa-beat-fade"></i>
                 </div>

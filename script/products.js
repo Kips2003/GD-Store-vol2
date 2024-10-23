@@ -389,3 +389,88 @@ addCartButton.style.cursor = 'pointer';
 addCartButton.addEventListener('click',  async () => {
     await addToCart();    
 })
+
+document.getElementById('addReview').addEventListener('click', () => {
+    window.location.href = `addReview.html?id=${productId}`;
+})
+
+document.getElementById('addReview').style.cursor = 'pointer';
+
+
+async function fetchReviewsFromApi(){
+    const url = `https://gd-store.ge/api/Reviews/product/${productId}`;
+
+    try{
+        const response = await fetch(url);
+
+        if(!response.ok){
+            throw new Error('Error while fetching reviews');
+        }
+
+        const data = response.json();
+    
+        return data;
+    }
+    catch(error){
+        console.error('Error:', error);
+        return [];
+    }
+
+}
+async function fetchUser(id) {
+    const url = `https://gd-store.ge/api/Auth/WithId/${id}`;
+
+    try{
+        const response = await fetch(url);
+
+        if(!response.ok)
+            throw new Error('Error while fetching user');
+
+        const data = response.json();
+
+        return data;
+    }
+    catch(error){
+        console.error('Error', error);
+        return '';
+    }
+}
+async function addReviewsToProductPage(){
+    const reviews = await fetchReviewsFromApi();
+
+    for(let i = 0; i < reviews.length; i++){
+        let review = reviews[i];
+        let user = await fetchUser(review.userId)
+        let html = await ReviewHTML(review, user);
+        document.getElementById('allReviews').innerHTML += html;
+    }
+
+
+}
+
+async function ReviewHTML(review, user){
+    return `<div class="review">
+                <div class="user-full">
+                    <div class="user">
+                        <img src="https://gd-store.ge/${user.profilePicture}" alt="">
+                    </div>
+                    <p>${user.userName}</p>
+                </div>
+
+                <div class="review-info">
+                    <p>${review.comment}</p>
+                    <div class="all-pictures">
+                        <div class="pictures" style="background-image: url(https://gd-store.ge/${review.images[0]});">
+                            
+                        </div>
+                        <div class="other-pictures" style="background-image:  linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),url(https://gd-store.ge/${review.images[1]});">
+                            <p>+${review.images.length}</p>  
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await addReviewsToProductPage();
+})
