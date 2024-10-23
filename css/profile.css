@@ -450,33 +450,31 @@
 
   #address-add-form {
     position: fixed;
-    top: 50%;
+    top: 18%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px; /* Adjust width */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* A light shadow */
     z-index: 1000; /* Make sure it's above everything else */
     display: none; /* Initially hidden */
+    height: auto;
 }
 .address-form-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
 .address-form-container {
   background-color: white;
-  padding: 20px;
+  padding: 50px;
   border-radius: 8px;
-  width: 300px;
+  width: 400px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -485,8 +483,47 @@
   color: white;
   border: none;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.blur {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+#newAddressForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.address-form-container>h2{
+  text-align: center;
+  font-size: 30px;
+  font-family: "Inter";
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.address-form-container input{
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 10px;
   padding: 5px 10px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  font-size: 15px;
+  font-family: "Inter";
+}
+.address-form-container label{
+  font-size: 20px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+.address-form-container button{
+  border: none;
+  background-color: #2c1b13;
+  color: #f9e3d0;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Inter";
 }
