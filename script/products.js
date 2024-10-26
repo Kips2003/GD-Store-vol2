@@ -1,331 +1,272 @@
+// Imports
+import { updateSearchDisplay, handleMobileSearchClick, checkForUser, getUserFromToken } from "./module.js";
+import { getQueryParam } from "./utils.js";
+import { fetchProductById, fetchReviewsFromApi, fetchUser } from "./api.js";
+import { ReviewHTML } from "./htmlGenerators.js";
 
-import { updateSearchDisplay } from "./module.js";
-import { checkForUser } from "./module.js";
-import { getUserFromToken } from "./module.js";
+// Constants
+const API_BASE_URL = 'https://gd-store.ge/api';
 
-
+// DOM Elements
 const loginButton = document.querySelector(".log-in");
 const registerButton = document.querySelector(".sign-in");
-loginButton.style.cursor = "pointer";
-registerButton.style.cursor = "pointer";
-
-loginButton.addEventListener("click", () => {
-  window.location.href = "loginPage.html";
-});
-
-registerButton.addEventListener("click", () => {
-    window.location.href = "registrationPage.html";
-});
-window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('iconified').addEventListener('keydown', function(event) {
-        // Check if the Enter key was pressed
-        if (event.Ekey === "Enter" || event.keyCode === 13) {
-            const title = event.target.value;
-      
-            // Redirect to shopping.html with the query
-            if (title) {
-                window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
-            } else {
-                window.location.href = 'shopping.html?limit=10'; // Default to show all products
-            }
-        }
-    });
-})
-
-  
-
-let logo = document.querySelector('.logo');
-logo.style.cursosr = 'pointer';
-
-logo.addEventListener('click', () => {
-    window.location.href = "index.html";
-});
-
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get('id');
-
+const logo = document.querySelector('.logo');
 const sliderDiv = document.querySelector('.photo-slide');
 const imageTrack = document.querySelector('.photos');
-
 const dotDiv = document.querySelector('.dots');
+const addCartButton = document.getElementById('addCart');
+const productId = getQueryParam('id');
+
+// Global Variables
 let shift = 0;
 const viewFinderSize = -(sliderDiv.clientWidth);
 
-async function fetchProductById(id) {
-    let url = `https://gd-store.ge/api/Product/WithId/${id}`;
+window.addEventListener('DOMContentLoaded', async () => {
+    await updateSearchDisplay(); // Call this first
+    await initializePage();
+    await addReviewsToProductPage();
+});
 
-    try{
-        const response = await fetch(url);
+// Event Handlers
+function setupEventListeners() {
+    loginButton.addEventListener("click", () => {
+        window.location.href = "loginPage.html";
+    });
 
-        if(!response.ok){
-            throw new Error(`Error: ${response.status}`);
+    registerButton.addEventListener("click", () => {
+        window.location.href = "registrationPage.html";
+    });
+
+    logo.addEventListener('click', () => {
+        window.location.href = "index.html";
+    });
+
+    // document.addEventListener('keydown', (event) => {
+    //     if (event.target.id === 'iconified') {
+    //         handleSearchKeydown(event);
+    //     }
+    // });
+    addCartButton.addEventListener('click', addToCart);
+
+    document.getElementById('addReview').addEventListener('click', () => {
+        window.location.href = `addReview.html?id=${getQueryParam('id')}`;
+    });
+
+    window.addEventListener("resize", async () => {
+        await updateSearchDisplay();
+    });
+}
+
+function handleSearchKeydown(event) {
+    // Check if the Enter key was pressed
+    if (event.key === "Enter" || event.keyCode === 13) {
+        const title = event.target.value;
+  
+        // Redirect to shopping.html with the query
+        if (title) {
+            window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
+        } else {
+            window.location.href = 'shopping.html?limit=10'; // Default to show all products
         }
-
-        const data = await response.json();
-
-        console.log("API response: ", data);
-
-        // Check if the data contains a valid product array
-
-        // Check for undefined products and filter them out if necessary
-        
-
-
-        return data;
-    }
-    catch(error){
-        console.error(`Fetch error:`, error);
-        return [];
     }
 }
 
 
+async function initializePage() {
+    loginButton.style.cursor = "pointer";
+    registerButton.style.cursor = "pointer";
+    logo.style.cursor = 'pointer';
+    addCartButton.style.cursor = 'pointer';
+    document.getElementById('addReview').style.cursor = 'pointer';
     
+    const quantityDefaultValue = document.getElementById('quantity');
+    quantityDefaultValue.value = 1;
+    
+    checkForUser();
+    setupEventListeners();
+    await displayProductPage();
+    
+}
+
+
 async function displayProductPage() {
-    
+    const data = await fetchProductById(productId);
+    console.log(data);
 
+    const images = createProductImages(data.images);
+    setupNavigationDots(images);
+    setupSlideControls(images);
+    setupSwipeFunction(images);
+    displayProductDetails(data);
+}
 
-        const data = await fetchProductById(productId);
+function createProductImages(imageUrls) {
+    const images = [];
+    imageUrls.forEach(url => {
+        const imgTag = document.createElement('img');
+        imgTag.src = `https://gd-store.ge/${url}`;
+        imgTag.width = sliderDiv.clientWidth;
+        imgTag.height = sliderDiv.clientHeight;
+        images.push(imgTag);
+        imageTrack.appendChild(imgTag);
+    });
+    imageTrack.style.width = `${images.length * sliderDiv.clientWidth}px`;
+    imageTrack.style.height = `${sliderDiv.clientHeight}px`;
+    return images;
+}
 
-        console.log(data);
+function setupNavigationDots(images) {
+    for (let i = 0; i < images.length; i++) {
+        dotDiv.innerHTML += `<span class="dot" id="dot${i}"></span>`;
+    }
 
-    /*
-        this is the part where all the photos from the api will be brought to front end 
-        i mean all of the and also they will be given the width and height which will be declared in css file
-    */
-
-        const images = [];
-        
-
-
-        data.images.forEach(element => {
-            const imgTag = document.createElement('img');
-            imgTag.src = `https://gd-store.ge/${element}`;
-            imgTag.width = `${sliderDiv.clientWidth}`;
-            imgTag.height = `${sliderDiv.clientHeight}`;
-
-            images.push(imgTag);
-            imageTrack.appendChild(imgTag);
+    let dots = document.querySelectorAll('.dot');
+    for (let i = 0; i < images.length; i++) {
+        document.getElementById(`dot${i}`).addEventListener('click', () => {
+            shift = -(i * sliderDiv.clientWidth);
+            updateSliderPosition(dots);
         });
+    }
+    document.getElementById('dot0').classList.add('active');
+}
 
-        imageTrack.style.width = `${images.length * sliderDiv.clientWidth}px`;
-        imageTrack.style.height = `${sliderDiv.clientHeight}px`;
+function setupSlideControls(images) {
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
 
-        let interval;
+    prevButton.style.transform = `translateX(5px) translateY(-${sliderDiv.clientHeight / 2}px)`;
+    nextButton.style.transform = `translateX(${sliderDiv.clientWidth - 45}px) translateY(-${sliderDiv.clientHeight / 2}px)`;
 
-        /*
-            from here is the part where the slide functionality comes in
-            there will be automatic slides which will be in every 4 seconds
-            there will be arrow which will have eventListeners to change photos from them
-            and there will be a dots which helps the user to navigate
-            also if the user changes the photo the timer will reset
-        */
-        
-        //startAutoSlide();
+    prevButton.addEventListener('click', () => handleSlideChange(images, 1));
+    nextButton.addEventListener('click', () => handleSlideChange(images, -1));
 
-        //lets add dots first and its functions
+    setupHoverEffects();
+}
 
-        for(let i = 0; i < images.length; i++){
-            dotDiv.innerHTML += `<span class="dot" id="dot${i}"></span>`;
-        }
+function handleSlideChange(images, direction) {
+    shift += direction * sliderDiv.clientWidth;
+    if (shift > 0) {
+        shift = (images.length - 1) * -(sliderDiv.clientWidth);
+    } else if (shift <= -(images.length * sliderDiv.clientWidth)) {
+        shift = 0;
+    }
+    updateSliderPosition(document.querySelectorAll('.dot'));
+}
 
-        let dots = document.querySelectorAll('.dot');
-        for(let i = 0; i < images.length; i++){
-            document.getElementById(`dot${i}`).addEventListener('click', ()=>{
-                shift = -(i * sliderDiv.clientWidth);
+function updateSliderPosition(dots) {
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === shift / (viewFinderSize)));
+    imageTrack.style.transform = `translateX(${shift}px)`;
+}
 
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
-                imageTrack.style.transform = `translateX(${shift}px)`;
-                //startAutoSlide();
-            });
-        }
-        document.getElementById('dot0').classList.add('active');
+function setupHoverEffects() {
+    sliderDiv.addEventListener('mouseover', toggleArrowVisibility);
+    sliderDiv.addEventListener('mouseout', toggleArrowVisibility);
+}
 
-        //we need a automatic slide function which will start as default and will added to every eventlistener
-
-
-
-        function startAutoSlide(){
-            clearInterval(interval);
-
-            interval = setInterval(() => {
-                shift -= sliderDiv.clientWidth;
-
-                if(shift <= -(images.length * sliderDiv.clientWidth)){
-                    shift = 0;
-                }
-
-                imageTrack.style.transform = `translate(${shift}px)`;
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
-            }, 4000);
-        }
+function toggleArrowVisibility(show) {
+    const prevArrow = document.querySelector('.prev');
+    const nextArrow = document.querySelector('.next');
+    if (show) {
+        prevArrow.classList.add('onscreen');
+        nextArrow.classList.add('onscreen');
+    } else {
+        prevArrow.classList.remove('onscreen');
+        nextArrow.classList.remove('onscreen');
+    }
+}
 
 
+function setupSwipeFunction(images) {
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
 
-        //now its time for arrow eventlisteners(next and previous)
+    const touchEvents = {
+        start: 'touchstart',
+        move: 'touchmove',
+        end: 'touchend'
+    };
 
-        //prev button
-        const prevButton = document.querySelector('.prev');
+    const mouseEvents = {
+        start: 'mousedown',
+        move: 'mousemove',
+        end: 'mouseup'
+    };
 
-        prevButton.style.transform = `translateX(5px) translateY(-${(sliderDiv.clientHeight)/2}px)`;
+    setupSwipeListeners(touchEvents, (e) => e.touches[0].clientX);
+    setupSwipeListeners(mouseEvents, (e) => e.clientX);
 
-        prevButton.addEventListener('click', () => {
-            shift += sliderDiv.clientWidth;
+    imageTrack.addEventListener('dragstart', (e) => e.preventDefault());
 
-            if(shift > 0){
-                shift = (images.length - 1) * -(sliderDiv.clientWidth);
-            }
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
-            imageTrack.style.transform = `translateX(${shift}px)`;
-            //startAutoSlide();
-        })
-
-
-        //next button
-
-        const nextButton = document.querySelector('.next');
-
-        nextButton.style.transform = `translateX(${sliderDiv.clientWidth-45}px) translateY(-${(sliderDiv.clientHeight)/2}px)`;
-
-        nextButton.addEventListener('click', () => {
-            shift -= sliderDiv.clientWidth;
-
-            if(shift <= -(images.length * sliderDiv.clientWidth)){
-                shift = 0;
-            }
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === shift/(viewFinderSize)));
-            imageTrack.style.transform = `translateX(${shift}px)`;
-            //startAutoSlide();
-        })
-
-
-        // swipe functionality
-
-        let startX = 0;
-        let endX = 0;
-        let isDragging = false;
-
-        // Touch events for mobile devices
-        imageTrack.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
+    function setupSwipeListeners(events, getClientX) {
+        imageTrack.addEventListener(events.start, (e) => {
+            startX = getClientX(e);
             isDragging = true;
         });
 
-        imageTrack.addEventListener('touchmove', (e) => {
-            endX = e.touches[0].clientX;
-        });
-
-        imageTrack.addEventListener('touchend', () => {
-            handleSwipe();
-            isDragging = false;
-        });
-
-        // Mouse events for desktop devices
-        sliderDiv.addEventListener('mouseover', () => {
-            document.querySelector('.prev').classList.toggle('onscreen');
-            document.querySelector('.next').classList.toggle('onscreen');
-        })
-        sliderDiv.addEventListener('mouseout', () => {
-            document.querySelector('.prev').classList.toggle('onscreen');
-            document.querySelector('.next').classList.toggle('onscreen');
-        })
-        
-        imageTrack.addEventListener('mousedown', (e) => {
-            startX = e.clientX;
-            isDragging = true;
-        });
-
-        window.addEventListener('mousemove', (e) => {
+        const moveTarget = events.move === 'mousemove' ? window : imageTrack;
+        moveTarget.addEventListener(events.move, (e) => {
             if (isDragging) {
-                endX = e.clientX;
+                endX = getClientX(e);
             }
         });
 
-        window.addEventListener('mouseup', () => {
+        window.addEventListener(events.end, () => {
             if (isDragging) {
-                handleSwipe();
+                handleSwipe(images,startX, endX);
                 isDragging = false;
             }
         });
-
-            // Prevent default dragging for desktop
-            imageTrack.addEventListener('dragstart', (e) => {
-            e.preventDefault();
-        });
-
-        // Common swipe handling function
-        function handleSwipe() {
-            const diffX = startX - endX;
-
-            // Check if the swipe was significant enough to be considered a swipe
-            if (Math.abs(diffX) > 50) { // 50px threshold for swipe detection
-                if (diffX > 0) {
-                    // Swipe left (next image)
-                    shift -= sliderDiv.clientWidth;
-
-                    if (shift <= -(images.length * sliderDiv.clientWidth)) {
-                        shift = 0;
-                    }
-                } else {
-                    // Swipe right (previous image)
-                    shift += sliderDiv.clientWidth;
-
-                    if (shift > 0) {
-                        shift = (images.length - 1) * -(sliderDiv.clientWidth);
-                    }
-                }
-
-                // Update slider position and dots
-                imageTrack.style.transform = `translateX(${shift}px)`;
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === shift / (viewFinderSize)));
-                //startAutoSlide();
-            }
-        }
-
-
-        //  adding title to the page
-
-        const productTitle = document.querySelector('.top-title > h1');
-
-        productTitle.innerHTML = `${data.title}`;
-
-
-
-        // adding price and discount
-
-        let priceDiv = document.querySelector('.price-discount');
-        
-        priceDiv.innerHTML = `<p class="price">${data.price}.00$</p>`;
-        
-        document.querySelector('.product-desc-num').innerHTML = `<div class="details-grid">
-            <div class="detail-row">
-                <div class="label">Weight</div>
-                <div class="value">${data.weight}</div>
-            </div>
-            <div class="detail-row">
-                <div class="label">Width</div>
-                <div class="value">${data.width}</div>
-            </div>
-            <div class="detail-row">
-                <div class="label">Depth</div>
-                <div class="value">${data.depth}</div>
-            </div>
-            <div class="detail-row">
-                <div class="label">Height</div>
-                <div class="value">${data.height}</div>
-            </div>
-            </div>`;
-
-        document.querySelector('.description').innerHTML += `<p>${data.description}</p>`;
- 
+    }
 }
 
 
-await updateSearchDisplay();
-checkForUser();
-window.addEventListener("resize", updateSearchDisplay);
+function handleSwipe(images, startX, endX) {
+    const diffX = startX - endX;
+    if (Math.abs(diffX) > 50) {
+        handleSlideChange(images, diffX > 0 ? -1 : 1);
+    }
+}
 
-displayProductPage();
+
+function displayProductDetails(data) {
+    document.querySelector('.top-title > h1').innerHTML = data.title;
+    document.querySelector('.price-discount').innerHTML = `<p class="price">${data.price}.00$</p>`;
+    document.querySelector('.product-desc-num').innerHTML = generateProductDetailsHTML(data);
+    document.querySelector('.description').innerHTML += `<p>${data.description}</p>`;
+}
+
+function generateProductDetailsHTML(data) {
+    const details = [
+        { label: 'Weight', value: data.weight },
+        { label: 'Width', value: data.width },
+        { label: 'Depth', value: data.depth },
+        { label: 'Height', value: data.height }
+    ];
+
+    return `
+        <div class="details-grid">
+            ${details.map(detail => `
+                <div class="detail-row">
+                    <div class="label">${detail.label}</div>
+                    <div class="value">${detail.value}</div>
+                </div>
+            `).join('')}
+        </div>`;
+}
+
+async function addReviewsToProductPage(){
+    const reviews = await fetchReviewsFromApi(productId);
+
+    for(let i = 0; i < reviews.length; i++){
+        let review = reviews[i];
+        let user = await fetchUser(review.userId)
+        let html = await ReviewHTML(review, user);
+        document.getElementById('allReviews').innerHTML += html;
+    }
+
+
+}
 
 async function GetQuantityValue() {
     const quantity = document.getElementById('quantity').value;
@@ -383,94 +324,14 @@ async function addToCart() {
     }
 }
 
-const addCartButton = document.getElementById('addCart');
-
-addCartButton.style.cursor = 'pointer';
-addCartButton.addEventListener('click',  async () => {
-    await addToCart();    
-})
-
-document.getElementById('addReview').addEventListener('click', () => {
-    window.location.href = `addReview.html?id=${productId}`;
-})
-
-document.getElementById('addReview').style.cursor = 'pointer';
 
 
-async function fetchReviewsFromApi(){
-    const url = `https://gd-store.ge/api/Reviews/product/${productId}`;
-
-    try{
-        const response = await fetch(url);
-
-        if(!response.ok){
-            throw new Error('Error while fetching reviews');
-        }
-
-        const data = response.json();
-    
-        return data;
-    }
-    catch(error){
-        console.error('Error:', error);
-        return [];
-    }
-
-}
-async function fetchUser(id) {
-    const url = `https://gd-store.ge/api/Auth/WithId/${id}`;
-
-    try{
-        const response = await fetch(url);
-
-        if(!response.ok)
-            throw new Error('Error while fetching user');
-
-        const data = response.json();
-
-        return data;
-    }
-    catch(error){
-        console.error('Error', error);
-        return '';
-    }
-}
-async function addReviewsToProductPage(){
-    const reviews = await fetchReviewsFromApi();
-
-    for(let i = 0; i < reviews.length; i++){
-        let review = reviews[i];
-        let user = await fetchUser(review.userId)
-        let html = await ReviewHTML(review, user);
-        document.getElementById('allReviews').innerHTML += html;
-    }
 
 
-}
 
-async function ReviewHTML(review, user){
-    return `<div class="review">
-                <div class="user-full">
-                    <div class="user">
-                        <img src="https://gd-store.ge/${user.profilePicture}" alt="">
-                    </div>
-                    <p>${user.userName}</p>
-                </div>
 
-                <div class="review-info">
-                    <p>${review.comment}</p>
-                    <div class="all-pictures">
-                        <div class="pictures" style="background-image: url(https://gd-store.ge/${review.images[0]});">
-                            
-                        </div>
-                        <div class="other-pictures" style="background-image:  linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),url(https://gd-store.ge/${review.images[1]});">
-                            <p>+${review.images.length}</p>  
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-}
 
-window.addEventListener('DOMContentLoaded', async () => {
-    await addReviewsToProductPage();
-})
+
+
+
+

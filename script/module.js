@@ -5,43 +5,52 @@ let isMobileEventListenerAdded = false; // Flag to keep track of the event liste
 export async function updateSearchDisplay() {
   const search = document.querySelector(".search");
   const searchPlaceholder = document.querySelector(".search-placeholder");
+  const signLogContainer = document.querySelector(".sign-log");
   const documentWidth = document.documentElement.clientWidth;
 
   if (documentWidth < 720) {
-    // Move the search bar into the sign-log container on small screens
-    document.querySelector(".sign-log").appendChild(search);
+    // Mobile layout
+    if (signLogContainer && !signLogContainer.contains(search)) {
+      signLogContainer.insertBefore(search, signLogContainer.firstChild);
+    }
     search.style.order = "0";
-    search.innerHTML = `<i style="order: 1;" class="fa-solid fa-magnifying-glass"></i>`; // Change to magnifying glass icon
+    search.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i>`;
     search.style.cursor = "pointer";
 
-    // Add click event to display the search input if not already added
-    if (!isMobileEventListenerAdded) {
+    if (!search.hasAttribute('data-mobile-listener')) {
       search.addEventListener("click", handleMobileSearchClick);
-      isMobileEventListenerAdded = true; // Set the flag to true
+      search.setAttribute('data-mobile-listener', 'true');
     }
   } else {
-    // Move the search bar back to its original position on larger screens
-    searchPlaceholder.appendChild(search);
-    search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002; S e a r c h"/>`;
-    search.style.order = "2";
-    search.style.cursor = "text"; // Change back to default cursor for input
-
-    // Remove the mobile click event listener when switching back to larger screens
-    if (isMobileEventListenerAdded) {
-      search.removeEventListener("click", handleMobileSearchClick);
-      isMobileEventListenerAdded = false; // Set the flag to false
+    // Desktop layout
+    if (searchPlaceholder && !searchPlaceholder.contains(search)) {
+      searchPlaceholder.appendChild(search);
     }
+    search.innerHTML = `<input type="text" class="form-control empty" id="iconified" placeholder="&#xF002; Search"/>`;
+    search.style.order = "2";
+    search.style.cursor = "text";
 
-    // Hide any previously created search sections for small screens
-    let searchSection = document.querySelector(".search-main");
-    if (searchSection) {
-      searchSection.style.display = "none";
+    if (search.hasAttribute('data-mobile-listener')) {
+      search.removeEventListener("click", handleMobileSearchClick);
+      search.removeAttribute('data-mobile-listener');
+    }
+  }
+
+  // Ensure search is always visible
+  search.style.display = 'block';
+}
+function handleSearchKeydown(event) {
+  if (event.key === "Enter" || event.keyCode === 13) {
+    const title = event.target.value;
+    if (title) {
+      window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(title)}`;
+    } else {
+      window.location.href = 'shopping.html?limit=10'; // Default to show all products
     }
   }
 }
-
 // Function to handle the mobile search bar click event
-function handleMobileSearchClick() {
+export function handleMobileSearchClick() {
   let searchSection = document.querySelector(".search-main");
   if (searchSection) {
     // If search section exists, toggle its visibility
@@ -54,10 +63,30 @@ function handleMobileSearchClick() {
     searchMain.style.padding = "10px";
     searchMain.style.backgroundColor = "#fff8f2";
     searchMain.style.position = "fixed";
-    searchMain.style.zIndex = "12";
-    document.querySelector("main").insertBefore(searchMain, document.querySelector("main").firstChild);
+    searchMain.style.top = "0";
+    searchMain.style.left = "0";
+    searchMain.style.width = "100%";
+    searchMain.style.zIndex = "1000";
+    searchMain.style.marginTop = "90px";
+    document.body.insertBefore(searchMain, document.body.firstChild);
+
+    // Focus on the input
+    searchMain.querySelector('input').focus();
+
+    // Add event listener for search
+    searchMain.querySelector('input').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        const searchTerm = event.target.value.trim();
+        if (searchTerm) {
+          window.location.href = `shopping.html?limit=10&title=${encodeURIComponent(searchTerm)}`;
+        } else {
+          window.location.href = 'shopping.html?limit=10';
+        }
+      }
+    });
   }
 }
+
 
 // Event Listener for resizing with debounce to optimize performance
 let debounceTimeout;
@@ -69,57 +98,55 @@ window.addEventListener("resize", () => {
 });
 
 // Initial call to set the correct display on page load
-updateSearchDisplay();
+document.addEventListener('DOMContentLoaded', () => {
+  updateSearchDisplay();
+});
+
+export async function checkForUser() {
+  const userToken = getCookie('authToken');
+  const changeIfUserExists = document.querySelector('.sign-log');
   
-function getCookie(name){
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if(parts.length === 2) return parts.pop().split(';').shift();
-}
-
-
-export function checkForUser(){
-  window.addEventListener("DOMContentLoaded", () => {
-    const userToken = getCookie('authToken');
-
-    const changeIfUserExists = document.querySelector('.sign-log');
-    
-    if(userToken){
+  if (userToken) {
+    try {
       const decodedUser = jwt_decode(userToken);
       console.log(decodedUser + "this is decoded");
-      try{
-        fetch(`https://gd-store.ge/api/Auth/${decodedUser.email}`) // Adjust this API endpoint as per your backend
-        .then(response => response.json())
-        .then(user => {
-          console.log(user);
-        
-        const userProfilePicture = "https://gd-store.ge" + user.profilePicture;
+      
+      const response = await fetch(`https://gd-store.ge/api/Auth/${decodedUser.email}`);
+      const user = await response.json();
+      console.log(user);
+    
+      const userProfilePicture = "https://gd-store.ge" + user.profilePicture;
 
-        changeIfUserExists.innerHTML = 
-        `<div class="header-icons">
-            <div style="order: 2;" class="cart">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div style="order: 2;" class="user" id="user">
-              <img src="${userProfilePicture}" alt="User Profile Picture" />
-            </div>
-            <div class="dropdown-menu" id="dropdownMenu">
-              <ul>
-                <li><a href="profile.html?email=${user.email}">Profile</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a style="color: red;" href="logout.html">Log Out</a></li>
-              </ul>
-            </div>
+      // Preserve the search icon
+      const searchIcon = changeIfUserExists.querySelector('.search');
+
+      changeIfUserExists.innerHTML = `
+        <div class="header-icons">
+          <div style="order: 2;" class="cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div style="order: 2;" class="user" id="user">
+            <img src="${userProfilePicture}" alt="User Profile Picture" />
+          </div>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <ul>
+              <li><a href="profile.html?email=${user.email}">Profile</a></li>
+              <li><a href="settings.html">Settings</a></li>
+              <li id="logOut"><a style="color: red;">Log Out</a></li>
+            </ul>
+          </div>
         </div>`;
-        addEventListenerToAddedUser();
-        })
-      }
-      catch(e){
-        console.log(e);
+
+      // Re-add the search icon
+      if (searchIcon) {
+        changeIfUserExists.insertBefore(searchIcon, changeIfUserExists.firstChild);
       }
 
+      addEventListenerToAddedUser();
+    } catch (e) {
+      console.error('Error in checkForUser:', e);
     }
-  })
+  }
 }
 
 
@@ -172,3 +199,23 @@ export async function getUserFromToken(){
 
   return  decodedUser;
 }
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+export async function logOut(){
+  const userToken = getCookie('authToken');
+
+  if(userToken){
+    document.cookie = "authToken=; epires=Thy, 01 Jan1970 00:00:00 UTC; path=/;"
+
+  }
+  window.location.href = 'index.html';
+}
+// document.getElementById('logOut').addEventListener('click', async () => {
+//   await logOut();
+// })
+
+export const jwt_decode = window.jwt_decode;
