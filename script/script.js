@@ -1,66 +1,79 @@
+//IMPORTING MODULES
+import { checkForUser, updateSearchDisplay } from "./module.js";
 
-import { checkForUser } from "./module.js";
-import { updateSearchDisplay } from "./module.js";
-
-updateSearchDisplay();
-checkForUser();
-// Add the event listener for window resize to update the search bar display dynamically
-window.addEventListener("resize", updateSearchDisplay);
-
-// IntersectionObserver to animate secTwo when it becomes visible on scroll
+//DOM ELEMENTS
 const secTwo = document.querySelector(".sec-two-wraper");
 const secThree = document.querySelector(".sec-three-wraper");
-
-let secTwoAnimated = false; // Separate flag for secTwo
-let secThreeAnimated = false; // Separate flag for secThree
-
-const options = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.05,
-};
-
-// Observer for secTwo
-let observerSecTwo = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting && !secTwoAnimated) {
-      secTwo.classList.add("animate"); // Trigger animation class for secTwo
-      secTwoAnimated = true; // Prevent the animation from triggering multiple times
-      observerSecTwo.unobserve(secTwo); // Stop observing secTwo after it animates
-    }
-  });
-}, options);
-
-observerSecTwo.observe(secTwo); // Observe secTwo
-
-// Observer for secThree
-let observerSecThree = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting && !secThreeAnimated) {
-      secThree.classList.add("animate"); // Trigger animation class for secThree
-      secThreeAnimated = true; // Prevent the animation from triggering multiple times
-      observerSecThree.unobserve(secThree); // Stop observing secThree after it animates
-    }
-  });
-}, options);
-
-observerSecThree.observe(secThree); // Observe secThree
-
-// Set the cursor style for the login and register buttons
 const loginButton = document.querySelector(".log-in");
 const registerButton = document.querySelector(".sign-in");
-loginButton.style.cursor = "pointer";
-registerButton.style.cursor = "pointer";
-
-// Handle "Shop Now" button click
 const shopNowButton = document.querySelector(".shop-now");
-shopNowButton.style.cursor = "pointer";
+const searchInput = document.getElementById('iconified');
 
-shopNowButton.addEventListener("click", () => {
-  window.location.href = "shopping.html?title=&page=1";
-});
 
-// Smooth scroll to section logic when clicking shop links
+// INTIFIALIZATION
+updateSearchDisplay();
+checkForUser();
+
+
+
+// EVENT LISTENERS
+window.addEventListener("resize", updateSearchDisplay);
+shopNowButton.addEventListener("click", handleShopNowClick);
+loginButton.addEventListener("click", () => navigateTo("loginPage.html"));
+registerButton.addEventListener("click", () => navigateTo("registrationPage.html"));
+searchInput.addEventListener('keydown', handleSearchInput);
+
+// SET CURSOR STYLE
+setCursorStyle([loginButton, registerButton, shopNowButton], "pointer");
+
+
+// INTERSECTION OBSERVER
+setupIntersectionObserver(secTwo, "secTwo");
+setupIntersectionObserver(secThree, "secThree");
+
+// SHOP LINKS SMOOTH SCROLL
+setupShopLinksScrolling();
+
+// FUNCTION DEFINITIONS
+function handleShopNowClick() {
+  navigateTo("shopping.html?title=&page=1");
+}
+
+function navigateTo(url) {
+  window.location.href = url;
+}
+
+function setCursorStyle(elements, style) {
+  elements.forEach(element => element.style.cursor = style);
+}
+
+function setupIntersectionObserver(element, name) {
+  let animated = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !animated) {
+        element.classList.add("animate");
+        animated = true;
+        observer.unobserve(element);
+      }
+    });
+  }, { root: null, rootMargin: "0px", threshold: 0.05 });
+  
+  observer.observe(element);
+}
+
+function setupShopLinksScrolling() {
+  shopLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      const targetId = this.dataset.target;
+      const targetElement = document.getElementById(targetId);
+      animatePadding(targetElement);
+      scrollToSection(event, `#${targetId}`);
+    });
+  });
+}
+
 function scrollToSection(event, sectionId) {
   event.preventDefault();
   const section = document.querySelector(sectionId);
@@ -76,46 +89,26 @@ function scrollToSection(event, sectionId) {
   });
 }
 
-// Handle smooth scrolling for elements with the class "click-shop"
-const shopLinks = document.querySelectorAll(".click-shop");
-shopLinks.forEach((link) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
-    const targetId = this.dataset.target;
-    document.getElementById(targetId).style.padding = "30px";
-    setTimeout(() => {
-      document.getElementById(targetId).style.padding = "20px"; // Restore original padding after a short delay
-    }, 150);
-  });
-});
+function animatePadding(element) {
+  element.style.padding = "30px";
+  setTimeout(() => {
+    element.style.padding = "20px";
+  }, 150);
+}
 
-// adding event listeners to sign up and login buttons
-
-loginButton.addEventListener("click", () => {
-  window.location.href = "loginPage.html";
-});
-
-registerButton.addEventListener("click", () => {
-  window.location.href = "registrationPage.html";
-});
-
-document.getElementById('iconified').addEventListener('keydown', function(event) {
-  // Check if the Enter key was pressed
+function handleSearchInput(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
-    
-    const title = event.target.value; 
-    let currentParams = new URLSearchParams(window.location.search); 
+    const title = event.target.value;
+    let currentParams = new URLSearchParams(window.location.search);
     currentParams.set('page', 1);
 
-    // Redirect to shopping.html with the query
     if (title) {
       currentParams.set('title', title);
-      window.location.href = "shopping.html" + '?' +currentParams.toString();
-    } 
-    else {
-        currentParams.delete('title');
-        window.location.href = "shopping.html" + '?' +currentParams.toString(); // Default to show all products
+    } else {
+      currentParams.delete('title');
     }
+
+    navigateTo("shopping.html?" + currentParams.toString());
+  }
 }
-});
 
